@@ -1,0 +1,1050 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.12.21)  21 DEC 2018 16:53
+entering extended mode
+**./RelazioneBasiDati.tex
+(RelazioneBasiDati.tex
+LaTeX2e <2018-04-01> patch level 5
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\base\article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\base\size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\geometry\geometry.sty
+Package: geometry 2018/04/16 v5.8 Page Geometry
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\graphics\keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\oberdiek\ifpdf.sty
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\oberdiek\ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\ifxetex\ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count88
+\Gm@cntv=\count89
+\c@Gm@tempcnt=\count90
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@layoutwidth=\dimen107
+\Gm@layoutheight=\dimen108
+\Gm@layouthoffset=\dimen109
+\Gm@layoutvoffset=\dimen110
+\Gm@dimlist=\toks15
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\geometry\geometry.cfg))
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\base\inputenc.sty
+Package: inputenc 2018/04/06 v1.3b Input encoding file
+\inpenc@prehook=\toks16
+\inpenc@posthook=\toks17
+)
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\babel\babel.sty
+Package: babel 2018/09/26 3.24 The Babel package
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\babel\switch.def
+File: switch.def 2018/09/26 3.24 Babel switching mechanism
+)
+*************************************
+* Local config file bblopts.cfg used
+*
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\babel-italian\italian.ldf
+Language: italian 2015/03/26 v1.3n Italian support from the babel system
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\babel\babel.def
+File: babel.def 2018/09/26 3.24 Babel common definitions
+\babel@savecnt=\count91
+\U@D=\dimen111
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\babel\txtbabel.def)
+\bbl@dirlevel=\count92
+)
+\it@lettering=\count93
+\it@doublequoteactive=\count94
+\it@ISOcompliance=\count95
+))
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\etoolbox\etoolbox.sty
+Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count96
+)
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\tabto\tabto.sty
+Package: tabto 2013/03/25  v 1.3  Another tabbing mechanism
+\CurrentLineWidth=\dimen112
+)
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\graphics\graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\graphics\graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\graphics\trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\graphics-cfg\graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\graphics-def\pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen113
+\Gin@req@width=\dimen114
+)
+(RelazioneBasiDati.aux)
+\openout1 = `RelazioneBasiDati.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(85.35826pt, 426.79135pt, 85.35826pt)
+* v-part:(T,H,B)=(85.35826pt, 674.33032pt, 85.35826pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=426.79135pt
+* \textheight=674.33032pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-23.91173pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Info: Redefining \it@ocap on input line 11.
+LaTeX Info: Redefining \it@ccap on input line 11.
+
+File italian.ldf warning: 
+italian.ldf    With OT1 encoding guillemets are poorly faked
+italian.ldf    Use T1 encoding
+italian.ldf    or specify a font with command \CaporaliFrom
+italian.ldf    See the documentation concerning the babel-italian typesetting 
+italian.ldf    on input line 11.
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count97
+\scratchdimen=\dimen115
+\scratchbox=\box26
+\nofMPsegments=\count98
+\nofMParguments=\count99
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count100
+\MPscratchDim=\dimen116
+\MPnumerator=\count101
+\makeMPintoPDFobject=\count102
+\everyMPtoPDFconversion=\toks19
+) (D:\Programmi_Installati\MiKTeX_2.9\tex\latex\oberdiek\epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\oberdiek\infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\oberdiek\grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\oberdiek\kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\oberdiek\ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+(D:\Programmi_Installati\MiKTeX_2.9\tex\latex\oberdiek\kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\oberdiek\kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\oberdiek\etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\oberdiek\ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(D:\Programmi_Installati\MiKTeX_2.9\tex\generic\oberdiek\pdftexcmds.sty
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 13.
+
+(RelazioneBasiDati.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 4.
+)
+\tf@toc=\write3
+\openout3 = `RelazioneBasiDati.toc'.
+
+ [1
+
+{C:/Users/maric/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 21--43
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--43
+
+ []
+
+[2]
+Underfull \hbox (badness 7047) in paragraph at lines 53--53
+[]\OT1/cmr/m/n/10 Operaio che ri-ce-ve uno sti-pen-dio
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--80
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--80
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 84--105
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--105
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--105
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--105
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 84--105
+
+ []
+
+[4]
+<img/Persone_Scheletro.png, id=21, 489.62926pt x 283.0575pt>
+File: img/Persone_Scheletro.png Graphic file (type png)
+<use img/Persone_Scheletro.png>
+Package pdftex.def Info: img/Persone_Scheletro.png  used on input line 118.
+(pdftex.def)             Requested size: 341.43437pt x 197.38304pt.
+<img/Persone_Parziale.png, id=23, 619.113pt x 467.94826pt>
+File: img/Persone_Parziale.png Graphic file (type png)
+<use img/Persone_Parziale.png>
+Package pdftex.def Info: img/Persone_Parziale.png  used on input line 124.
+(pdftex.def)             Requested size: 341.43437pt x 258.07208pt.
+ [5 <./img/Persone_Scheletro.png> <./img/Persone_Parziale.png>]
+<img/Fasi_Scheletro.png, id=29, 225.2415pt x 306.54526pt>
+File: img/Fasi_Scheletro.png Graphic file (type png)
+<use img/Fasi_Scheletro.png>
+Package pdftex.def Info: img/Fasi_Scheletro.png  used on input line 133.
+(pdftex.def)             Requested size: 298.75264pt x 406.6289pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 138--146
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 138--146
+
+ []
+
+[6 <./img/Fasi_Scheletro.png>]
+<img/Fasi_Parziale.png, id=34, 791.3565pt x 549.252pt>
+File: img/Fasi_Parziale.png Graphic file (type png)
+<use img/Fasi_Parziale.png>
+Package pdftex.def Info: img/Fasi_Parziale.png  used on input line 152.
+(pdftex.def)             Requested size: 426.79135pt x 296.2229pt.
+ [7 <./img/Fasi_Parziale.png>]
+<img/Vendite_Scheletro.png, id=40, 266.79675pt x 220.4235pt>
+File: img/Vendite_Scheletro.png Graphic file (type png)
+<use img/Vendite_Scheletro.png>
+Package pdftex.def Info: img/Vendite_Scheletro.png  used on input line 161.
+(pdftex.def)             Requested size: 298.75264pt x 246.83562pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--167
+
+ []
+
+<img/Vendite_Parziale.png, id=41, 367.97475pt x 383.63326pt>
+File: img/Vendite_Parziale.png Graphic file (type png)
+<use img/Vendite_Parziale.png>
+Package pdftex.def Info: img/Vendite_Parziale.png  used on input line 171.
+(pdftex.def)             Requested size: 298.75264pt x 311.46709pt.
+[8 <./img/Vendite_Scheletro.png>]
+<img/Schema_Finale.png, id=46, 870.25125pt x 1174.98975pt>
+File: img/Schema_Finale.png Graphic file (type png)
+<use img/Schema_Finale.png>
+Package pdftex.def Info: img/Schema_Finale.png  used on input line 178.
+(pdftex.def)             Requested size: 426.79866pt x 711.34612pt.
+
+
+LaTeX Warning: Float too large for page by 37.0158pt on input line 179.
+
+[9 <./img/Vendite_Parziale.png>] [10 <./img/Schema_Finale.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 183--227
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 229--262
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 229--262
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 229--262
+
+ []
+
+[12]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 268.
+
+ (D:\Programmi_Installati\MiKTeX_2.9\tex\latex\base\omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 268.
+<img/vendite_accessi.png, id=61, 1197.273pt x 602.25pt>
+File: img/vendite_accessi.png Graphic file (type png)
+<use img/vendite_accessi.png>
+Package pdftex.def Info: img/vendite_accessi.png  used on input line 274.
+(pdftex.def)             Requested size: 426.79135pt x 214.68703pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--296
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--296
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--296
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--296
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--296
+
+ []
+
+[13 <./img/vendite_accessi.png>]
+<img/prodotti_accessi.png, id=68, 612.48825pt x 270.41025pt>
+File: img/prodotti_accessi.png Graphic file (type png)
+<use img/prodotti_accessi.png>
+Package pdftex.def Info: img/prodotti_accessi.png  used on input line 301.
+(pdftex.def)             Requested size: 426.79135pt x 188.42764pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 297--316
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 297--316
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 297--316
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 297--316
+
+ []
+
+[14 <./img/prodotti_accessi.png>]
+<img/parttime_accessi.png, id=73, 725.109pt x 563.10374pt>
+File: img/parttime_accessi.png Graphic file (type png)
+<use img/parttime_accessi.png>
+Package pdftex.def Info: img/parttime_accessi.png  used on input line 321.
+(pdftex.def)             Requested size: 426.79135pt x 331.43784pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 317--340
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 317--340
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 317--340
+
+ []
+
+[15 <./img/parttime_accessi.png>]
+<img/fasi_prodotti_specifici_accessi.png, id=78, 781.7205pt x 450.483pt>
+File: img/fasi_prodotti_specifici_accessi.png Graphic file (type png)
+<use img/fasi_prodotti_specifici_accessi.png>
+Package pdftex.def Info: img/fasi_prodotti_specifici_accessi.png  used on input
+ line 345.
+(pdftex.def)             Requested size: 426.79135pt x 245.95172pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 341--364
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 341--364
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 341--364
+
+ []
+
+[16 <./img/fasi_prodotti_specifici_accessi.png>]
+<img/eliminazione_ger_Operaio.png, id=83, 831.70724pt x 144.54pt>
+File: img/eliminazione_ger_Operaio.png Graphic file (type png)
+<use img/eliminazione_ger_Operaio.png>
+Package pdftex.def Info: img/eliminazione_ger_Operaio.png  used on input line 3
+79.
+(pdftex.def)             Requested size: 426.79135pt x 74.17094pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 373--381
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 373--381
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 373--381
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 373--381
+
+ []
+
+<img/eliminazione_ger_PersonaAzienda.png, id=84, 222.23026pt x 323.40825pt>
+File: img/eliminazione_ger_PersonaAzienda.png Graphic file (type png)
+<use img/eliminazione_ger_PersonaAzienda.png>
+Package pdftex.def Info: img/eliminazione_ger_PersonaAzienda.png  used on input
+ line 385.
+(pdftex.def)             Requested size: 213.39568pt x 310.56213pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 382--387
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 382--387
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 382--387
+
+ []
+
+<img/eliminazione_ger_Persona.png, id=85, 679.338pt x 619.113pt>
+File: img/eliminazione_ger_Persona.png Graphic file (type png)
+<use img/eliminazione_ger_Persona.png>
+Package pdftex.def Info: img/eliminazione_ger_Persona.png  used on input line 3
+91.
+(pdftex.def)             Requested size: 405.45047pt x 369.51517pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 388--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 388--393
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 388--393
+
+ []
+
+[17 <./img/eliminazione_ger_Operaio.png> <./img/eliminazione_ger_PersonaAzienda
+.png>]
+<img/eliminazione_ger_prodotto_fase.png, id=91, 1010.5755pt x 1125.60526pt>
+File: img/eliminazione_ger_prodotto_fase.png Graphic file (type png)
+<use img/eliminazione_ger_prodotto_fase.png>
+Package pdftex.def Info: img/eliminazione_ger_prodotto_fase.png  used on input 
+line 398.
+(pdftex.def)             Requested size: 426.79135pt x 475.36163pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 394--400
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 394--400
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 394--400
+
+ []
+
+[18 <./img/eliminazione_ger_Persona.png>] [19 <./img/eliminazione_ger_prodotto_
+fase.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 401--403
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 403--404
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 404--405
+
+ []
+
+
+Overfull \hbox (32.61264pt too wide) in paragraph at lines 409--477
+\OT1/cmr/bx/n/10 PERSONA[]AZIENDA\OT1/cmr/m/n/10 ($[]$,Nome, Co-gno-me, Ind[]Vi
+a, Ind[]Civico, Ind[]Citta, Te-le-fo-no, Da-ta[]di[]Nascita,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 409--477
+
+ []
+
+[20]
+<img/Schema_Finale_Logica.png, id=104, 967.2135pt x 1087.06125pt>
+File: img/Schema_Finale_Logica.png Graphic file (type png)
+<use img/Schema_Finale_Logica.png>
+Package pdftex.def Info: img/Schema_Finale_Logica.png  used on input line 480.
+(pdftex.def)             Requested size: 426.8002pt x 711.34196pt.
+
+
+LaTeX Warning: Float too large for page by 37.01164pt on input line 481.
+
+[21] [22 <./img/Schema_Finale_Logica.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 485--490
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 485--490
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 485--490
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 485--490
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--492
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--492
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--492
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 492--497
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 492--497
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 492--497
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 492--497
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 497--499
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 497--499
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 497--499
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 499--501
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 499--501
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 499--501
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 501--506
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 501--506
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 501--506
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 501--506
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 501--506
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 501--506
+
+ []
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 507--514
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 507--514
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 507--514
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 507--514
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 507--514
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 507--514
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 507--514
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 507--514
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--531
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--531
+
+ []
+
+
+Overfull \hbox (2.08223pt too wide) in paragraph at lines 514--531
+\OT1/cmr/m/n/10 INSERT IN-TO Grup-po[]Raccolta(ID[]Raccolta, ID[]Operaio, Ore[]
+Lavoro, ID[]Vendemmiatrice)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--531
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--531
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--531
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--531
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--531
+
+ []
+
+
+Overfull \hbox (0.84332pt too wide) in paragraph at lines 514--531
+\OT1/cmr/m/n/10 INSERT IN-TO Grup-po[]Raccolta(ID[]Raccolta, ID[]Operaio, ID[]V
+endemmiatrice) VA-LUES(?,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--531
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--531
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--531
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--531
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 514--531
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 531--532
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 531--532
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 532--534
+
+ []
+
+
+Overfull \hbox (19.77296pt too wide) in paragraph at lines 532--534
+\OT1/cmr/m/n/10 SELECT S.Data, S.Quantita, S.Botte FROM VI-NO V JOIN SVI-NA-TU-
+RA S ON (V.ID[]Svinatura
+ []
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 534--539
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 534--539
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 534--539
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 534--539
+
+ []
+
+[25]
+Underfull \hbox (badness 3701) in paragraph at lines 552--552
+[]\OT1/cmr/m/n/10 Macchina agri-co-la, ge-ne-ral-men-te con mo-to-
+ []
+
+
+Underfull \hbox (badness 1077) in paragraph at lines 552--552
+\OT1/cmr/m/n/10 re pro-prio, de-sti-na-ta al-la rac-col-ta mec-ca-ni-ca
+ []
+
+[26] (RelazioneBasiDati.aux) ) 
+Here is how much of TeX's memory you used:
+ 2985 strings out of 492970
+ 43413 string characters out of 3132797
+ 131492 words of memory out of 3000000
+ 6801 multiletter control sequences out of 15000+200000
+ 8600 words of font info for 30 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 41i,9n,25p,802b,289s stack positions out of 5000i,500n,10000p,200000b,50000s
+<D:/Programmi_Installati/MiKTeX_2.9/fonts/type1/p
+ublic/amsfonts/cm/cmbx10.pfb><D:/Programmi_Installati/MiKTeX_2.9/fonts/type1/pu
+blic/amsfonts/cm/cmbx12.pfb><D:/Programmi_Installati/MiKTeX_2.9/fonts/type1/pub
+lic/amsfonts/cm/cmbxti10.pfb><D:/Programmi_Installati/MiKTeX_2.9/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb><D:/Programmi_Installati/MiKTeX_2.9/fonts/type1/publ
+ic/amsfonts/cm/cmr12.pfb><D:/Programmi_Installati/MiKTeX_2.9/fonts/type1/public
+/amsfonts/cm/cmr17.pfb><D:/Programmi_Installati/MiKTeX_2.9/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb><D:/Programmi_Installati/MiKTeX_2.9/fonts/type1/public/am
+sfonts/cm/cmti10.pfb>
+Output written on RelazioneBasiDati.pdf (26 pages, 859218 bytes).
+PDF statistics:
+ 151 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+

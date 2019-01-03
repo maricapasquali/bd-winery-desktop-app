@@ -1,0 +1,31 @@
+\babel@toc {italian}{}
+\babel@toc {italian}{}
+\contentsline {section}{\numberline {1}Analisi}{2}
+\contentsline {subsection}{\numberline {1.1}Raccolta dei Requisiti}{2}
+\contentsline {subsection}{\numberline {1.2}Rilevamento delle ambiguit\IeC {\`a} e ricostruzione dei requisiti}{3}
+\contentsline {subsection}{\numberline {1.3}Estrazione dei concetti principali}{4}
+\contentsline {section}{\numberline {2}Progettazione Concettuale}{5}
+\contentsline {subsection}{\numberline {2.1}Persone coinvolte}{5}
+\contentsline {subsubsection}{\numberline {2.1.1}Schema scheletro}{5}
+\contentsline {subsubsection}{\numberline {2.1.2}Schema Parziale}{5}
+\contentsline {subsection}{\numberline {2.2}Fasi di Produzione}{6}
+\contentsline {subsubsection}{\numberline {2.2.1}Schema scheletro}{6}
+\contentsline {subsubsection}{\numberline {2.2.2}Raffinamenti proposti}{6}
+\contentsline {subsubsection}{\numberline {2.2.3}Schema Parziale}{7}
+\contentsline {subsection}{\numberline {2.3}Vendite}{8}
+\contentsline {subsubsection}{\numberline {2.3.1}Schema scheletro}{8}
+\contentsline {subsubsection}{\numberline {2.3.2}Raffinamenti proposti}{8}
+\contentsline {subsubsection}{\numberline {2.3.3}Schema Parziale}{8}
+\contentsline {subsection}{\numberline {2.4}Schema Finale}{9}
+\contentsline {section}{\numberline {3}Progettazione Logica}{11}
+\contentsline {subsection}{\numberline {3.1}Stima del volume dei dati}{11}
+\contentsline {subsection}{\numberline {3.2}Descrizione delle operazioni principali e stima della loro frequenza}{12}
+\contentsline {subsection}{\numberline {3.3}Schemi di navigazione e tabelle degli accessi}{13}
+\contentsline {subsection}{\numberline {3.4}Analisi delle ridondanze}{16}
+\contentsline {subsection}{\numberline {3.5}Raffinamento dello schema}{17}
+\contentsline {subsection}{\numberline {3.6}Traduzione di entit\IeC {\`a} e associazioni in relazioni}{20}
+\contentsline {subsection}{\numberline {3.7}Schema relazionale finale}{21}
+\contentsline {subsection}{\numberline {3.8}Traduzione delle operazioni in query SQL}{23}
+\contentsline {section}{\numberline {4}Progettazione dell'applicazione}{26}
+\contentsline {subsection}{\numberline {4.1}Descrizione dell'architettura dell'applicazione realizzata}{26}
+\contentsline {section}{\numberline {5}Glossario}{26}
