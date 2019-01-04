@@ -459,8 +459,6 @@ public class QueriesPartTime {
 						.setLastName(result.getString("Cognome")).setType(result.getString("Tipo_Login")).build();
 				workers.add(worker);
 			}
-			Utility.log("workers = ");
-			workers.forEach(i -> Utility.log(i.string()));
 		} catch (SQLException e) {
 			new Exception(e.getMessage());
 			Utility.logError("Errore: " + e.getMessage());

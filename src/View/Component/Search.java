@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import Utility.Components;
 import Utility.KeyboardAdapter;
 
 public abstract class Search extends JPanel {
@@ -27,7 +28,6 @@ public abstract class Search extends JPanel {
 	private final JPanel pane = Components.createPaneBorder();
 	private final JPanel paneCenter = Components.createPaneGridBag();
 	private final GridBagConstraints cons = Components.createGridBagConstraints();
-
 	private final KeyListener keyL = new KeyboardAdapter(() -> searchActions());
 
 	private JPanel paneSouth = Components.createPaneFlow();
@@ -72,8 +72,14 @@ public abstract class Search extends JPanel {
 		pTable.repaint();
 	}
 
-	protected JComboBox<Object> getComboBox() {
+	public JComboBox<Object> getComboBox() {
 		return tosearchCombo;
+	}
+	
+	public void addItemComboBox(final Object item) {
+		tosearchCombo.addItem(item);
+		tosearchCombo.revalidate();
+		tosearchCombo.repaint();
 	}
 
 	protected String getSelectedCombo() {

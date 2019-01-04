@@ -13,11 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import com.toedter.calendar.JDateChooser;
 
+import Controller.Controller;
 import DataBaseConnections.QueriesEmployee;
 import Model.Buying;
 import Model.Client;
@@ -26,6 +26,7 @@ import Model.Product;
 import Model.builder.BuyingBuilderImpl;
 import Model.builder.ClientBuilderImpl;
 import Model.tables.BuyDetailsTable;
+import Utility.Components;
 import Utility.Utility;
 import exception.InsertFailedException;
 import exception.JustInsertException;
@@ -58,7 +59,7 @@ public class PanelsEmployee extends PanelsPartTime {
 	private static JScrollPane cartTable = new JScrollPane();
 	private static Buying buy;
 	private static String PRICE_TOT;
-	private static List<Client> clients = new ArrayList<>();
+
 	private static List<Product> wines = new ArrayList<>();
 
 	private static final JPanel panelSales = Components.createPaneBorder("Acquisto");
@@ -78,17 +79,6 @@ public class PanelsEmployee extends PanelsPartTime {
 		panelSales.add(salePane(pers), BorderLayout.NORTH);
 		paneBuying.add(panelSales);
 		return paneBuying;
-	}
-
-	public static JPanel createSearch() {
-		final JPanel contentPane = Components.createPaneBorder();
-		final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		contentPane.add(tabbedPane);
-		tabbedPane.addTab("Informazioni sul Vino", new SearchWineInfo());
-		tabbedPane.addTab("Acquisti cliente", new SearchClientBuying());
-		tabbedPane.addTab("Prodotti per Fase", new SearchProduct());
-		return contentPane;
 	}
 
 	// FUNZIONI PRIVATE
@@ -170,7 +160,7 @@ public class PanelsEmployee extends PanelsPartTime {
 		Components.addInCenterPanel(pCenter, constraints, phone, tPhoneClient);
 		pane.add(pCenter, BorderLayout.CENTER);
 
-		// Button Assumi
+		// Button inserisci
 		final JPanel paneAdd = Components.createPaneFlow();
 		final JButton add = Components.createButton("Inserisci");
 		final JButton cancel = Components.createButton("Annulla");
@@ -196,13 +186,11 @@ public class PanelsEmployee extends PanelsPartTime {
 				if (success) {
 					Components.infoPane("Inserimento del Cliente è andata a buon fine", pane);
 					resetClient();
-					clients.add(client);
-					Utility.log(clients);
-					SwingUtilities.invokeLater(() -> {
-						clients.forEach(c -> tClient.addItem(c.string()));
-						tClient.revalidate();
-						tClient.repaint();
-					});
+					Controller.getInstance().addClient(client);
+					tClient.addItem(client.string());
+					tClient.revalidate();
+					tClient.revalidate();
+					Utility.log(Controller.getInstance().getListClients());
 					client = null;
 				}
 			} catch (NullPointerException ex) {
@@ -219,10 +207,6 @@ public class PanelsEmployee extends PanelsPartTime {
 		tStreetNumberClient.setValue(Components.getRESET_FIELD_NUMBER());
 		Components.resetTextComponents(
 				Arrays.asList(tNameClient, tLastNameClient, tStreetClient, tStreetCityClient, tPhoneClient));
-		try {
-			client.setID(clients.get(clients.size() - 1).getID() + 1);
-		} catch (NullPointerException e) {
-		}
 	}
 
 	private static JPanel salePane(final PersonCompany pers) {
@@ -243,10 +227,10 @@ public class PanelsEmployee extends PanelsPartTime {
 		constraints.gridx = 0;
 		final JLabel idCliente = Components.createLabel("Cliente ");
 		try {
-			clients = QueriesEmployee.listOfClients();// QUERY TUTTI I CLIENTI INSERITI
+
 			tClient = Components.createComboBox();
 			Components.addInCenterPanel(paneSale, constraints, idCliente, tClient,
-					clients.stream().map(Client::string));
+					Controller.getInstance().getListClients().stream().map(Client::string));
 
 			pane.add(paneSale, BorderLayout.CENTER);
 
@@ -269,7 +253,7 @@ public class PanelsEmployee extends PanelsPartTime {
 					final String[] clientSelected = String.valueOf(tClient.getSelectedItem())
 							.split(Pattern.quote(Utility.getSplit()));
 					buy = new BuyingBuilderImpl()
-							.setIdClient(Client.find(clients, clientSelected[0], clientSelected[1], clientSelected[2])
+							.setIdClient(Client.find(Controller.getInstance().getListClients(), clientSelected[0], clientSelected[1], clientSelected[2])
 									.getID())
 							.setIdCompany(pers.getID()).setDateBuying(Utility.dateSql(tDateBuy.getDate())).build();
 					Utility.log(buy);

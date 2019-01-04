@@ -16,16 +16,15 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-
-
+import Controller.Controller;
 import DataBaseConnections.QueriesSystem;
 import Model.Login;
 import Model.PersonCompany;
 import Model.builder.LoginBuilderImpl;
+import Utility.Components;
 import Utility.EnDeCrypt;
 import Utility.KeyboardAdapter;
 import Utility.Utility;
-import View.Component.Components;
 import exception.NeverLoggedIn;
 import exception.NotInSystemException;
 
@@ -170,6 +169,7 @@ public class MenuLogin extends AbstractFrameDefault {
 	}
 
 	private void loginPersonalMenu() {
+		Controller.getInstance().execQuery(p);
 		switch (p.getType()) {
 		case ADMIN:
 			menu = new MenuAdmin(p);
@@ -239,7 +239,6 @@ public class MenuLogin extends AbstractFrameDefault {
 	public static void main(final String[] arg) {
 		try {	
 			UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");
-//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			final AbstractFrameDefault f = new MenuLogin();
 			try {
 				dataBase = Utility.dbChoosen(f);
@@ -247,6 +246,7 @@ public class MenuLogin extends AbstractFrameDefault {
 					Components.errorPane("Selezionare database 'Azienda.accdb' ", f);
 					dataBase = Utility.dbChoosen(f);
 				}
+				
 				f.display();
 			} catch (NullPointerException e) {
 				System.exit(0);

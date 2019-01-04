@@ -539,7 +539,6 @@ SELECT SV.ID\_Fase, SV.Uva, VN.Quantita, VN.Botte FROM SVINATURA SV JOIN VINO VN
 SELECT SF.ID\_Fase, SF.Uva, F.Quantita, F.Botte FROM SFECCIATURA SF JOIN FECCIA F ON (F.ID\_Sfecciatura = SF.ID\_Fase) WHERE SF.Data=?\\\newline
 SELECT SF.ID\_Fase, SF.Uva, VNF.Quantita, VNF.Botte FROM SFECCIATURA SF JOIN VNF ON (VNF.ID\_Sfecciatura = SF.ID\_Fase) WHERE SF.Data=?\\\newline
 \item \textbf{Visualizzazione dei gruppi di ogni fase con componente uno specifico operaio Part-time e il relativo calcolo delle ore complessive di lavoro }\\\newline
-SELECT ID, Nome, Cognome FROM PERSONA\_AZIENDA WHERE Tipo\_Login = 'Part-time'\\\newline
 SELECT R.Data, GR.Ore\_Lavoro, GR.ID\_Vendemmiatrice FROM GRUPPO\_RACCOLTA GR , RACCOLTA R WHERE GR.ID\_Operaio = ?\\\newline
 SELECT P.Data, GP.Ore\_Lavoro FROM GRUPPO\_PIGIATURA GP , PIGIATURA P WHERE GP.ID\_Operaio = ?\\\newline
 SELECT SV.Data, GSV.Ore\_Lavoro FROM GRUPPO\_SVINATURA GSV , SVINATURA SV WHERE GSV.ID\_Operaio = ?\\\newline

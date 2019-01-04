@@ -72,7 +72,7 @@ public class PersonCompany extends Person {
 	public String toString() {
 		return "Person Company [ID = " + getID() + ", Name = " + getName() + ", LastName = " + getLastName() + ", Street = "
 				+ getStreet() + ", StreetNumber = " + getStreetNumber() + ", StreetCity = " + getStreetCity()
-				+ ", PhoneNumber = " + getPhoneNumber() + ", Data Birth = " + getDataBirth().toString() + ", Type = "
+				+ ", PhoneNumber = " + getPhoneNumber() + ", Data Birth = " + getDataBirth() + ", Type = "
 				+ getType() + ", Monthly Salary = " + getMonthlySalary() + ", Date Assumption = " + getDateAssumption() +"]";
 	}
 	
@@ -91,8 +91,7 @@ public class PersonCompany extends Person {
 		final String[] workerSelected = w.split(Pattern.quote(Utility.getSplit()));
 		return workers.stream().filter(worker -> worker.getName().equals(workerSelected[0]) && worker.getLastName().equals(workerSelected[1])).collect(Collectors.toList()).get(0).getID();
 	}
-	
-	
+		
 	public boolean isAdmin() {
 		return this.getType().equals(TypeAccess.ADMIN);
 	}

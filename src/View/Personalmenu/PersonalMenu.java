@@ -13,8 +13,8 @@ import javax.swing.border.EmptyBorder;
 
 import DataBaseConnections.QueriesSystem;
 import Model.PersonCompany;
+import Utility.Components;
 import Utility.Utility;
-import View.Component.Components;
 
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
@@ -82,9 +82,7 @@ public class PersonalMenu extends AbstractFrameDefault {
 	@Override
 	public void closeAction() {
 		if (JOptionPane.showConfirmDialog(this, EXIT_MESSAGE) == JOptionPane.YES_OPTION) {
-//			((AbstractFrameDefault) JFrame.getFrames()[0]).display();
 			QueriesSystem.updateDateLogin(Utility.dateNow(), this.getPerson().getID());
-//			this.dispose();
 			System.exit(0);
 		}
 	}

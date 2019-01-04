@@ -15,7 +15,7 @@ public class MenuPartTime extends PersonalMenu{
 	public MenuPartTime(final PersonCompany p) {
 		super(p);
 		super.getTabbedPane().addTab(super.phaseProduction,  new JScrollPane(PanelsPartTime.createProductions()));
-		super.getTabbedPane().addTab(super.search,  new JScrollPane(PanelsPartTime.createSearch()));	
+		super.getTabbedPane().addTab(super.search,  new JScrollPane(PanelsPartTime.createSearch(p)));	
 	}
 
 }

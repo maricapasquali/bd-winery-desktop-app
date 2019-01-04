@@ -8,7 +8,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import org.apache.commons.lang3.math.Fraction;
 
-import View.Component.Components;
+import Utility.Components;
 
 public abstract class AbstractFrameDefault extends JFrame {
 

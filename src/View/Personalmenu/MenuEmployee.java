@@ -17,7 +17,7 @@ public class MenuEmployee extends PersonalMenu {
 						
 		super.getTabbedPane().addTab(super.phaseProduction,  new JScrollPane(PanelsEmployee.createProductions()));
 		super.getTabbedPane().addTab(super.sales,  new JScrollPane(PanelsEmployee.createSales(p)));
-		super.getTabbedPane().addTab(super.search,  new JScrollPane(PanelsEmployee.createSearch()));
+		super.getTabbedPane().addTab(super.search,  new JScrollPane(PanelsEmployee.createSearch(p)));
 					
 	}
 }

@@ -11,11 +11,11 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import com.toedter.calendar.JDateChooser;
 
+import Controller.Controller;
 import DataBaseConnections.QueriesAdmin;
 import Model.Cask;
 import Model.Grape;
@@ -26,6 +26,7 @@ import Model.builder.GrapeBuilderImpl;
 import Model.builder.PersonCompanyBuilderImpl;
 import Model.enumeration.TypeAccess;
 import Model.enumeration.TypeGrape;
+import Utility.Components;
 import Utility.Utility;
 import exception.InsertFailedException;
 import exception.JustInsertException;
@@ -43,17 +44,6 @@ public class PanelsAdmin extends PanelsEmployee {
 	private static PersonCompany personCompany;
 
 	// FUNZIONI PUBBLICHE
-	public static JPanel createSearch() {
-		final JPanel contentPane = Components.createPaneBorder();
-		final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
-		contentPane.add(tabbedPane);
-		tabbedPane.addTab("Informazioni sul Vino", new SearchWineInfo());
-		tabbedPane.addTab("Acquisti cliente", new SearchClientBuying());
-		tabbedPane.addTab("Part-Time Ore", new SearchWorkerHours());
-		tabbedPane.addTab("Prodotti per Fase", new SearchProduct());
-		return contentPane;
-	}
 
 	@SuppressWarnings("unchecked")
 	public static JPanel createAssumption(final long idOwner) {
@@ -181,13 +171,17 @@ public class PanelsAdmin extends PanelsEmployee {
 				success = QueriesAdmin.assumptionWorker(personCompany, idOwner);
 				if (success) {
 					Components.infoPane("Assunzione è andata a buon fine", pane);
-					Components.resetTextComponents(Arrays.asList(tName, tLastName, tStreet, tStreetCity, tPhone));
-					Components.resetNumberJSpinner(Arrays.asList(tStreetNumber, tSalary));
-					tDateBirth.setDate(null);
-					tType.setSelectedIndex(Components.getRESET_FIELD_NUMBER());
-					Components.setVisibleComponents(Arrays.asList(salary, tSalary), false);
-					tDateAssumption.setDate(null);
-					personCompany = null;
+					SwingUtilities.invokeLater(() -> {
+						Components.resetTextComponents(Arrays.asList(tName, tLastName, tStreet, tStreetCity, tPhone));
+						Components.resetNumberJSpinner(Arrays.asList(tStreetNumber, tSalary));
+						tDateBirth.setDate(null);
+						tType.setSelectedIndex(Components.getRESET_FIELD_NUMBER());
+						Components.setVisibleComponents(Arrays.asList(salary, tSalary), false);
+						tDateAssumption.setDate(null);
+					});
+
+					Controller.getInstance().addWorker(personCompany);
+					Utility.log(Controller.getInstance().getListWorkers());
 				}
 			} catch (NullPointerException ex) {
 				Components.errorPane(Components.getFieldNotSet(), pane);
@@ -304,6 +298,7 @@ public class PanelsAdmin extends PanelsEmployee {
 				success = QueriesAdmin.addCask(cask);
 				if (success) {
 					Components.infoPane("Inserimento della Botte ha avuto successo", pane);
+					Controller.getInstance().addCask(cask);
 					Components.resetNumberJSpinner(Arrays.asList(tId, tCapacity, tCellar));
 				}
 			} catch (NullPointerException ex) {
@@ -384,6 +379,7 @@ public class PanelsAdmin extends PanelsEmployee {
 				success = QueriesAdmin.addHarvester(harve);
 				if (success) {
 					Components.infoPane("Inserimento della Vendemmiatrice ha avuto successo", pane);
+					Controller.getInstance().addHarve(harve);
 					Components.resetTextComponents(Arrays.asList(tbrand, tTemplate));
 					Components.resetNumberJSpinner(Arrays.asList(tPrice, tRate));
 				}
@@ -458,6 +454,7 @@ public class PanelsAdmin extends PanelsEmployee {
 				success = QueriesAdmin.addGrapes(grape);
 				if (success) {
 					Components.infoPane("Inserimento dell' Uva ha avuto successo", pane);
+					Controller.getInstance().addGrape(grape);
 					tName.setText(Components.getRESET_FIELD_TEXT());
 					tType.setSelectedIndex(Components.getRESET_FIELD_NUMBER());
 					Components.resetNumberJSpinner(Arrays.asList(tPricesDam, tPricesBott));

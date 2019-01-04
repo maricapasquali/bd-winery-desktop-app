@@ -13,6 +13,7 @@ import DataBaseConnections.QueriesSearch;
 import Model.Product;
 import Model.enumeration.PhaseProductionWine;
 import Model.tables.search.ProductsTable;
+import Utility.Components;
 
 public class SearchProduct extends Search {
 

@@ -21,7 +21,7 @@ public class MenuAdmin extends PersonalMenu {
 		super.getTabbedPane().addTab(super.phaseProduction, new JScrollPane(PanelsAdmin.createProductions()));
 		super.getTabbedPane().addTab(super.sales, new JScrollPane(PanelsAdmin.createSales(p)));
 		super.getTabbedPane().addTab(administration, new JScrollPane(PanelsAdmin.createAdministration()));
-		super.getTabbedPane().addTab(super.search, new JScrollPane(PanelsAdmin.createSearch()));
+		super.getTabbedPane().addTab(super.search, new JScrollPane(PanelsAdmin.createSearch(p)));
 	}
 
 }

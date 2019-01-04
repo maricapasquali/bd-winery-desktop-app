@@ -20,6 +20,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import com.toedter.calendar.JDateChooser;
 
+import Controller.Controller;
 import DataBaseConnections.QueriesPartTime;
 import Model.Cask;
 import Model.Grape;
@@ -35,6 +36,8 @@ import Model.enumeration.PhaseProductionWine;
 import Model.enumeration.TypeGrape;
 import Model.enumeration.TypeProduct;
 import Model.tables.GroupsTable;
+import Utility.ComboBoxObserver;
+import Utility.Components;
 import Utility.Utility;
 import exception.JustInsertException;
 import exception.NotPhaseException;
@@ -50,31 +53,28 @@ public class PanelsPartTime {
 	private static JLabel datePhase;
 	private static JDateChooser tDatePhase;
 	private static JLabel grapesLabel;
-	private static JComboBox<Object> tGrapesPhase;
+	private static ComboBoxObserver tGrapesPhase;
 	private static JLabel quantityGrape;
 	private static JSpinner tQuantityGrape;
 	private static JButton addPhase;
 	private static PhaseProduction pp;
 	// Panel Product
 	private static JComboBox<Object> tPhase;
-	private static JComboBox<Object> tGrapesProduct;
+	private static ComboBoxObserver tGrapesProduct;
 	private static JComboBox<Object> tProduct;
 	private static JLabel quantity;
 	private static String q;
 	private static JSpinner tQuantity;
 	private static JLabel cask;
-	private static JComboBox<Object> tCask;
-
+	private static ComboBoxObserver tCask;
 	private static JButton addProduct;
 	private static JPanel productselect;
 	private static JLabel dateChooseToInsert;
 	private static JComboBox<Object> tDateChooseToInsert;
 	private static JButton ahead;
 	private static Product p;
-	private static List<Cask> casks;
 	private static Map<String, Cask> caskForFeccia;
 	private static List<PhaseProduction> listPhase;
-
 	// Panel Group
 	private static JScrollPane tableGroup = new JScrollPane();
 	private static JPanel paneAddGroup;
@@ -85,20 +85,15 @@ public class PanelsPartTime {
 	private static JLabel phaseGroup;
 	private static JComboBox<Object> tPhaseGroup;
 	private static JLabel workerLabel;
-	private static JComboBox<Object> tWorker;
+	private static ComboBoxObserver tWorker;
 	private static JLabel hours;
 	private static JSpinner tHours;
 	private static JLabel harvester;
-	private static JComboBox<Object> tHarvester;
+	private static ComboBoxObserver tHarvester;
 	private static JButton addWorker;
 	private static JButton reset;
 	private static JButton close;
 	private static Group group = new Group();
-	private static List<PersonCompany> workers;
-	private static List<Harvester> harve;
-
-	// Model for all
-	private static List<Grape> grapes;
 	private static boolean setOneWorker = false;
 
 	// FUNZIONI PUBBLICHE
@@ -110,12 +105,26 @@ public class PanelsPartTime {
 		return slipPane;
 	}
 
-	public static JPanel createSearch() {
+	public static JPanel createSearch(final PersonCompany p) {
 		final JPanel contentPane = Components.createPaneBorder();
 		final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		contentPane.add(tabbedPane);
-		tabbedPane.addTab("Informazioni sul Vino", new SearchWineInfo());
+
+		final SearchWineInfo searchWine = new SearchWineInfo();
+		Controller.getInstance().addObserver(searchWine);
+		final SearchWorkerHours searchWorkerHours = new SearchWorkerHours();
+		Controller.getInstance().addObserver(searchWorkerHours);
+		
+		tabbedPane.addTab("Informazioni sul Vino", searchWine);
+		if(!p.isPartTime()) {
+			final SearchClientBuying searchClientBuy = new SearchClientBuying();
+			Controller.getInstance().addObserver(searchClientBuy);
+			tabbedPane.addTab("Acquisti cliente", searchClientBuy);
+			if (p.isAdmin()) {
+				tabbedPane.addTab("Part-Time Ore", searchWorkerHours);
+			} 
+		}		
 		tabbedPane.addTab("Prodotti per Fase", new SearchProduct());
 		return contentPane;
 	}
@@ -158,6 +167,7 @@ public class PanelsPartTime {
 
 	private static JPanel createPhase() {
 		final JPanel pane = Components.createPaneBorder();
+	
 		pane.add(Components.title("Fase"), BorderLayout.NORTH);
 		// Form center
 		final JPanel pCenter = Components.createPaneGridBag();
@@ -183,14 +193,21 @@ public class PanelsPartTime {
 		constraints.gridx = 0;
 		grapesLabel = Components.createLabel("Uva ");
 		tGrapesPhase = Components.createComboBox();
-
-		try {
-			grapes = QueriesPartTime.listOfGrapes();
-			grapes.forEach(System.out::println);
-		} catch (NullPointerException ex) {
-		}
+		Controller.getInstance().addObserver(tGrapesPhase);
 		Components.addInCenterPanel(pCenter, constraints, grapesLabel, tGrapesPhase,
-				grapes.stream().map(Grape::getName));
+				Controller.getInstance().getListGrapes().stream().map(Grape::getName));
+
+		
+		tGrapesPhase.setEventChange((o, arg) -> {
+			SwingUtilities.invokeLater(() -> {
+				try {
+					tGrapesPhase.addItem(((Grape) arg).getName());
+					tGrapesPhase.revalidate();
+					tGrapesPhase.repaint();
+				} catch (ClassCastException ex) {
+				}
+			});
+		});
 
 		// Quantità Uva Raccolta
 		constraints.gridy++;
@@ -237,7 +254,9 @@ public class PanelsPartTime {
 			try {
 				pp = new PhaseProductionBuilderImpl().setPpw((PhaseProductionWine) tNamePhase.getSelectedItem())
 						.setDate(Utility.dateSql(tDatePhase.getDate()))
-						.setGrape(Grape.find(grapes, tGrapesPhase.getSelectedItem().toString())).build();
+						.setGrape(Grape.find(Controller.getInstance().getListGrapes(),
+								tGrapesPhase.getSelectedItem().toString()))
+						.build();
 
 				if (pp.isCollection()) {
 					pp.setQuantity(((Number) tQuantityGrape.getValue()).doubleValue());
@@ -261,6 +280,7 @@ public class PanelsPartTime {
 
 	private static JPanel createProduct() {
 		final JPanel pane = Components.createPaneBorder();
+
 		pane.add(Components.title("Prodotto"), BorderLayout.NORTH);
 		// Form center
 		final JPanel pCenter = Components.createPaneGridBag();
@@ -284,7 +304,7 @@ public class PanelsPartTime {
 	@SuppressWarnings("unchecked")
 	private static JPanel researchPhase() {
 		final JPanel paneResearchPhase = Components.createPaneBorder();
-
+		
 		// Form center
 		final JPanel pCenter = Components.createPaneGridBag();
 		final GridBagConstraints constraints = Components.createGridBagConstraints();
@@ -313,10 +333,21 @@ public class PanelsPartTime {
 		constraints.gridx = 0;
 		grapesLabel = Components.createLabel("Uva ");
 		tGrapesProduct = Components.createComboBox();
+		Controller.getInstance().addObserver(tGrapesProduct);
 		Components.addInCenterPanel(pCenter, constraints, grapesLabel, tGrapesProduct,
-				grapes.stream().map(Grape::getName));
+				Controller.getInstance().getListGrapes().stream().map(Grape::getName));
 		paneResearchPhase.add(pCenter, BorderLayout.CENTER);
 
+		tGrapesProduct.setEventChange((o, arg) -> {
+			SwingUtilities.invokeLater(() -> {
+				try {
+					tGrapesProduct.addItem(((Grape) arg).getName());
+					tGrapesProduct.revalidate();
+					tGrapesProduct.repaint();
+				} catch (ClassCastException ex) {
+				}
+			});
+		});
 		// Prodotto
 		constraints.gridy++;
 		constraints.gridx = 0;
@@ -400,8 +431,7 @@ public class PanelsPartTime {
 	}
 
 	private static JPanel addQuantityOfProduct() {
-		final JPanel pane = Components.createPaneBorder();
-
+		final JPanel pane = Components.createPaneBorder();	
 		// Form center
 		final JPanel pCenter = Components.createPaneGridBag();
 		final GridBagConstraints constraints = Components.createGridBagConstraints();
@@ -426,16 +456,26 @@ public class PanelsPartTime {
 		constraints.gridx = 0;
 		cask = Components.createLabel("Botte");
 		tCask = Components.createComboBox();
-		try {
-			casks = QueriesPartTime.selectAvailableCasks();
-			casks.forEach(System.out::println);
+		Controller.getInstance().addObserver(tCask);
+		tCask.setEventChange((o, arg) -> {
+			SwingUtilities.invokeLater(() -> {
+				try {
+					tCask.addItem(((Cask) arg).string());
+					tCask.revalidate();
+					tCask.repaint();
+				} catch (ClassCastException ex) {
+				}
+			});
+		});
 
+		try {
 			caskForFeccia = QueriesPartTime.selectCasksForFeccia();
 			caskForFeccia.entrySet().forEach(System.out::println);
 		} catch (NullPointerException ex) {
 		}
 
-		Components.addInCenterPanel(pCenter, constraints, cask, tCask, casks.stream().map(Cask::string));
+		Components.addInCenterPanel(pCenter, constraints, cask, tCask,
+				Controller.getInstance().getListCasks().stream().map(Cask::string));
 
 		pane.add(pCenter, BorderLayout.CENTER);
 
@@ -460,8 +500,8 @@ public class PanelsPartTime {
 					if (TypeProduct.FECCIA.equals(tp)) {
 						c = Cask.find(caskForFeccia.values(), tCask.getSelectedItem().toString());
 					} else {
-						c = Cask.find(casks, tCask.getSelectedItem().toString());
-						casks.remove(c);
+						c = Cask.find(Controller.getInstance().getListCasks(), tCask.getSelectedItem().toString());
+						Controller.getInstance().getListCasks().remove(c);
 					}
 					p.setCask(c.getIDBotte());
 				}
@@ -502,7 +542,7 @@ public class PanelsPartTime {
 			tDateChooseToInsert.removeAllItems();
 			tDateChooseToInsert.addItem(null);
 			tQuantity.setValue(Components.getRESET_FIELD_NUMBER());
-			resetCask(casks.stream().map(Cask::string));
+			resetCask(Controller.getInstance().getListCasks().stream().map(Cask::string));
 			productselect.setVisible(false);
 			ahead.setVisible(true);
 		});
@@ -515,9 +555,10 @@ public class PanelsPartTime {
 			switch (p) {
 			case FECCIA:
 				if (tGrapesProduct.getSelectedItem() != null) {
-					final TypeGrape typeGrapeSelect = Grape.find(grapes, tGrapesProduct.getSelectedItem().toString())
+					final TypeGrape typeGrapeSelect = Grape
+							.find(Controller.getInstance().getListGrapes(), tGrapesProduct.getSelectedItem().toString())
 							.getType();
-					grapes.forEach(System.out::println);
+					Controller.getInstance().getListGrapes().forEach(System.out::println);
 					Utility.log(typeGrapeSelect);
 					if (typeGrapeSelect != null) {
 						resetCask(Arrays.asList(caskForFeccia.get(typeGrapeSelect.toString())).stream()
@@ -527,7 +568,7 @@ public class PanelsPartTime {
 				}
 				break;
 			default:
-				resetCask(casks.stream().map(Cask::string));
+				resetCask(Controller.getInstance().getListCasks().stream().map(Cask::string));
 				break;
 			}
 		}
@@ -603,6 +644,7 @@ public class PanelsPartTime {
 	@SuppressWarnings("unchecked")
 	private static JPanel addGroups() {
 		final JPanel pane = Components.createPaneBorder();
+		
 		// Form center
 		final JPanel pCenter = Components.createPaneGridBag();
 		final GridBagConstraints constraints = Components.createGridBagConstraints();
@@ -618,21 +660,28 @@ public class PanelsPartTime {
 		constraints.gridy++;
 		workerLabel = Components.createLabel("Operaio ");
 		tWorker = Components.createComboBox();
-		try {
-			workers = QueriesPartTime.selectAllWorker();
-			workers.forEach(w -> w.string());
-		} catch (NullPointerException ec) {
-		}
+		Controller.getInstance().addObserver(tWorker);
 		Components.addInCenterPanel(pCenter, constraints, workerLabel, tWorker,
-				workers.stream().map(PersonCompany::string));
+				Controller.getInstance().getListWorkers().stream().map(PersonCompany::string));
+
+		tWorker.setEventChange((o, arg) -> {
+			try {
+				final PersonCompany w = (PersonCompany) arg;
+				SwingUtilities.invokeLater(() -> {
+					tWorker.addItem(w.string());
+					tWorker.revalidate();
+					tWorker.repaint();
+				});
+			} catch (ClassCastException ex) {
+			}
+		});
 
 		tWorker.addActionListener(e -> {
 			SwingUtilities.invokeLater(() -> {
 				try {
 					final List<JComponent> hoursComponents = Arrays.asList(hours, tHours);
-					switch (PersonCompany
-							.find(workers, ((JComboBox<Object>) e.getSource()).getSelectedItem().toString())
-							.getType()) {
+					switch (PersonCompany.find(Controller.getInstance().getListWorkers(),
+							((JComboBox<Object>) e.getSource()).getSelectedItem().toString()).getType()) {
 					case PART_TIME:
 						Components.setVisibleComponents(hoursComponents, true);
 						break;
@@ -659,12 +708,20 @@ public class PanelsPartTime {
 		constraints.gridx = 0;
 		harvester = Components.createLabel("Vendemmiatrice ");
 		tHarvester = Components.createComboBox();
-		try {
-			harve = QueriesPartTime.selectAllHarvesters();
-			harve.forEach(System.out::println);
-		} catch (NullPointerException ec) {
-		}
-		Components.addInCenterPanel(pCenter, constraints, harvester, tHarvester, harve.stream().map(Harvester::string));
+		Controller.getInstance().addObserver(tHarvester);
+		tHarvester.setEventChange((o, arg) ->{
+			try {	
+				final Harvester h = (Harvester) arg;
+				SwingUtilities.invokeLater(() -> {
+					tHarvester.addItem(h.string());
+					tHarvester.revalidate();
+					tHarvester.repaint();
+				});
+			} catch (ClassCastException ex) {
+			}
+		});
+		
+		Components.addInCenterPanel(pCenter, constraints, harvester, tHarvester, Controller.getInstance().getListHarves().stream().map(Harvester::string));
 		Components.setVisibleComponents(Arrays.asList(harvester, tHarvester), false);
 
 		pane.add(pCenter, BorderLayout.CENTER);
@@ -688,7 +745,7 @@ public class PanelsPartTime {
 							.findFirst().get();
 
 					group.setPhaseProduction(phase);
-					group.setIdHarvester(Harvester.find(harve, tHarvester.getSelectedItem()));
+					group.setIdHarvester(Harvester.find(Controller.getInstance().getListHarves(), tHarvester.getSelectedItem()));
 					if (!group.getIdHarvester().isPresent()) {
 						Components.setVisibleComponents(Arrays.asList(harvester, tHarvester), false);
 					} else {
@@ -697,8 +754,8 @@ public class PanelsPartTime {
 				}
 
 				try {
-					group.addWorkerAndHoursWork(PersonCompany.find(workers, tWorker.getSelectedItem().toString()),
-							((Number) tHours.getValue()).intValue());
+					group.addWorkerAndHoursWork(PersonCompany.find(Controller.getInstance().getListWorkers(),
+							tWorker.getSelectedItem().toString()), ((Number) tHours.getValue()).intValue());
 					Group.String();
 					SwingUtilities.invokeLater(() -> {
 						tWorker.setSelectedIndex(Components.getRESET_FIELD_NUMBER());

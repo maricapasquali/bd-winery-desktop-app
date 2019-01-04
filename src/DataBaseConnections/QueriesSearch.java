@@ -16,11 +16,9 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.Pair;
 
 import Model.Buying;
-import Model.PersonCompany;
 import Model.Product;
 import Model.builder.BuyingBuilderImpl;
 import Model.builder.GrapeBuilderImpl;
-import Model.builder.PersonCompanyBuilderImpl;
 import Model.builder.PhaseProductionBuilderImpl;
 import Model.builder.ProductBuilderImpl;
 import Model.enumeration.PhaseProductionWine;
@@ -35,7 +33,6 @@ public class QueriesSearch {
 			+ " on (V.ID_Sfecciatura = S.ID_Fase) Where S.Uva=?";
 	private static String searchProduct;
 	private static String searchHoursPartTime;
-	private static String selectAllPartTime = "Select ID, Nome, Cognome From Persona_Azienda Where Tipo_Login = 'Part-time'";
 	private static String searchBuyClient = "Select Data, Prezzo_Totale, ID_Aziendale From Acquisto Where ID_Cliente = ?";
 	
 	public static List<Product> searchWineInfo(final String nameGrape) {
@@ -186,44 +183,6 @@ public class QueriesSearch {
 		return hours.entrySet().stream()
 				.sorted(Map.Entry.comparingByKey((d1, d2) -> Long.compare(d1.right.getTime(), d2.right.getTime())))
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-	}
-
-	public static List<PersonCompany> selectAllPartTime() {
-		List<PersonCompany> partTimes = null;
-		PersonCompany p;
-		final Connection connection = ConnectionDB.getUcanaccessConnection();
-		Utility.log("Exexute Connection ...");
-		Statement statement = null;
-		try {
-			statement = connection.createStatement();
-
-			final ResultSet result = statement.executeQuery(selectAllPartTime);
-			Utility.log("Exexute Query ... ");
-			if (result != null) {
-				partTimes = new ArrayList<>();
-			}
-			while (result.next()) {
-				p = new PersonCompanyBuilderImpl().setID(result.getLong("ID")).setName(result.getString("Nome"))
-						.setLastName(result.getString("Cognome")).build();
-				partTimes.add(p);
-				Utility.log("Insert values ...");
-			}
-
-		} catch (SQLException e) {
-			new Exception(e.getMessage());
-			Utility.logError("Errore: " + e.getMessage());
-		} finally {
-			try {
-				if (statement != null)
-					statement.close();
-				if (connection != null)
-					connection.close();
-			} catch (SQLException e) {
-				new Exception(e.getMessage());
-				Utility.logError("Errore: " + e.getMessage());
-			}
-		}
-		return partTimes;
 	}
 
 	public static List<Buying> searchBuyingClient(final Long idClient) {
