@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import com.toedter.calendar.JDateChooser;
@@ -35,15 +36,25 @@ public class PanelsAdmin extends PanelsEmployee {
 	private static JSpinner tRate;
 	private static JLabel price;
 	private static JSpinner tPrice;
-	
+
 	private static Grape grape;
 	private static Cask cask;
 	private static Harvester harve;
 	private static PersonCompany personCompany;
-	
 
 	// FUNZIONI PUBBLICHE
-	
+	public static JPanel createSearch() {
+		final JPanel contentPane = Components.createPaneBorder();
+		final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		contentPane.add(tabbedPane);
+		tabbedPane.addTab("Informazioni sul Vino", new SearchWineInfo());
+		tabbedPane.addTab("Acquisti cliente", new SearchClientBuying());
+		tabbedPane.addTab("Part-Time Ore", new SearchWorkerHours());
+		tabbedPane.addTab("Prodotti per Fase", new SearchProduct());
+		return contentPane;
+	}
+
 	@SuppressWarnings("unchecked")
 	public static JPanel createAssumption(final long idOwner) {
 		final JPanel pane = Components.createPaneBorder();
@@ -61,7 +72,7 @@ public class PanelsAdmin extends PanelsEmployee {
 		final JLabel name = Components.createLabel("Nome ");
 		final JTextField tName = Components.createTextField(Components.getMaxChar());
 		Components.addInCenterPanel(pCenter, constraints, name, tName);
-		
+
 		// Cognome
 		constraints.gridy++;
 		constraints.gridx = 0;
@@ -75,7 +86,7 @@ public class PanelsAdmin extends PanelsEmployee {
 		final JLabel dateBith = Components.createLabel("Data di Nascita ");
 		final JDateChooser tDateBirth = Components.createDateField();
 		Components.addInCenterPanel(pCenter, constraints, dateBith, tDateBirth);
-		
+
 		// Indirizzo
 		constraints.gridy++;
 		constraints.gridx = 0;
@@ -90,7 +101,6 @@ public class PanelsAdmin extends PanelsEmployee {
 		constraints.gridx = 3;
 		final JSpinner tStreetNumber = Components.createSpinner();
 		pCenter.add(tStreetNumber, constraints);
-		
 
 		// Città
 		constraints.gridy++;
@@ -113,7 +123,7 @@ public class PanelsAdmin extends PanelsEmployee {
 		final JLabel dateAssumption = Components.createLabel("Data di Assunzione ");
 		final JDateChooser tDateAssumption = Components.createDateField();
 		Components.addInCenterPanel(pCenter, constraints, dateAssumption, tDateAssumption);
-		
+
 		// Tipo
 		constraints.gridy++;
 		constraints.gridx = 0;
@@ -128,24 +138,24 @@ public class PanelsAdmin extends PanelsEmployee {
 		final JSpinner tSalary = Components.createSpinnerDouble();
 		Components.addInCenterPanel(pCenter, constraints, salary, tSalary);
 		Components.setVisibleComponents(Arrays.asList(salary, tSalary), false);
-	
+
 		// se dipendente : stipendio
 		tType.addActionListener(e -> {
 			SwingUtilities.invokeLater(() -> {
 				try {
-					switch((TypeAccess)((JComboBox<Object>) e.getSource()).getSelectedItem()) {
-					case DIPENDENTE: 
+					switch ((TypeAccess) ((JComboBox<Object>) e.getSource()).getSelectedItem()) {
+					case DIPENDENTE:
 						Components.setVisibleComponents(Arrays.asList(salary, tSalary), true);
 						break;
-					default: 
+					default:
 						Components.setVisibleComponents(Arrays.asList(salary, tSalary), false);
 						break;
 					}
 					pCenter.revalidate();
 					pCenter.repaint();
-				}catch(NullPointerException ex) {
+				} catch (NullPointerException ex) {
 					Components.setVisibleComponents(Arrays.asList(salary, tSalary), false);
-				}		
+				}
 			});
 
 		});
@@ -162,8 +172,7 @@ public class PanelsAdmin extends PanelsEmployee {
 				personCompany = new PersonCompanyBuilderImpl().setName(tName.getText()).setLastName(tLastName.getText())
 						.setStreet(tStreet.getText()).setStreetNumber(((Number) tStreetNumber.getValue()).intValue())
 						.setStreetCity(tStreetCity.getText()).setPhoneNumber(tPhone.getText())
-						.setDataBirth(Utility.dateSql(tDateBirth.getDate()))
-						.setType(tType.getSelectedItem().toString())
+						.setDataBirth(Utility.dateSql(tDateBirth.getDate())).setType(tType.getSelectedItem().toString())
 						.setMonthlySalary(((Number) tSalary.getValue()).doubleValue()).build();
 
 				personCompany.setDateAssumption(Utility.dateSql(tDateAssumption.getDate()));
@@ -172,7 +181,7 @@ public class PanelsAdmin extends PanelsEmployee {
 				success = QueriesAdmin.assumptionWorker(personCompany, idOwner);
 				if (success) {
 					Components.infoPane("Assunzione è andata a buon fine", pane);
-					Components.resetTextComponents(Arrays.asList(tName, tLastName,tStreet,tStreetCity,tPhone));
+					Components.resetTextComponents(Arrays.asList(tName, tLastName, tStreet, tStreetCity, tPhone));
 					Components.resetNumberJSpinner(Arrays.asList(tStreetNumber, tSalary));
 					tDateBirth.setDate(null);
 					tType.setSelectedIndex(Components.getRESET_FIELD_NUMBER());
@@ -186,7 +195,7 @@ public class PanelsAdmin extends PanelsEmployee {
 				Components.errorPane(e1.getMessage(), pane);
 			} catch (JustInsertException e1) {
 				Components.errorPane(e1.getMessage(), pane);
-			} 
+			}
 		});
 		pane.add(paneAdd, BorderLayout.SOUTH);
 		return pane;
@@ -271,14 +280,14 @@ public class PanelsAdmin extends PanelsEmployee {
 		final JLabel capacity = Components.createLabel("Capacità (Lt) ");
 		final JSpinner tCapacity = Components.createSpinnerDouble();
 		Components.addInCenterPanel(pCenter, constraints, capacity, tCapacity);
-		
+
 		// Cantina
 		constraints.gridy++;
 		constraints.gridx = 0;
 		final JLabel cellar = Components.createLabel("Cantina ");
 		final JSpinner tCellar = Components.createSpinner();
 		Components.addInCenterPanel(pCenter, constraints, cellar, tCellar);
-		
+
 		pane.add(pCenter, BorderLayout.CENTER);
 
 		// Button aggiungi
@@ -295,13 +304,13 @@ public class PanelsAdmin extends PanelsEmployee {
 				success = QueriesAdmin.addCask(cask);
 				if (success) {
 					Components.infoPane("Inserimento della Botte ha avuto successo", pane);
-					Components.resetNumberJSpinner(Arrays.asList(tId,tCapacity,tCellar));
+					Components.resetNumberJSpinner(Arrays.asList(tId, tCapacity, tCellar));
 				}
 			} catch (NullPointerException ex) {
 				Components.errorPane(Components.getFieldNotSet(), pane);
 			} catch (JustInsertException e1) {
 				Components.errorPane(e1.getMessage(), pane);
-			} 
+			}
 		});
 		pane.add(paneAdd, BorderLayout.SOUTH);
 		return pane;
@@ -322,7 +331,7 @@ public class PanelsAdmin extends PanelsEmployee {
 		final JLabel brand = Components.createLabel("Marca ");
 		final JTextField tbrand = Components.createTextField(Components.getMaxChar());
 		Components.addInCenterPanel(pCenter, constraints, brand, tbrand);
-		
+
 		// Modello
 		constraints.gridy++;
 		constraints.gridx = 0;
@@ -338,29 +347,29 @@ public class PanelsAdmin extends PanelsEmployee {
 		price = Components.createLabel("Costo ");
 		tPrice = Components.createSpinnerDouble();
 		setVisibleRateOrPrice(false);
-		
+
 		final JCheckBox borrow = Components.createCheckBox("In prestito");
 		borrow.addActionListener(e -> {
-			SwingUtilities.invokeLater(() -> {					
-				setVisibleRateOrPrice(((JCheckBox)e.getSource()).isSelected() ? true :false);				
+			SwingUtilities.invokeLater(() -> {
+				setVisibleRateOrPrice(((JCheckBox) e.getSource()).isSelected() ? true : false);
 				pCenter.revalidate();
 				pCenter.repaint();
 			});
 		});
 		pCenter.add(borrow, constraints);
-				
+
 		// Tariffa oraria [0-1]
 		constraints.gridy++;
 		constraints.gridx = 0;
 		Components.addInCenterPanel(pCenter, constraints, rate, tRate);
-		
+
 		// Costo [0-1]
 		constraints.gridy++;
 		constraints.gridx = 0;
 		Components.addInCenterPanel(pCenter, constraints, price, tPrice);
-		
+
 		pane.add(pCenter, BorderLayout.CENTER);
-		
+
 		// Button aggiungi
 		final JPanel paneAdd = Components.createPaneFlow();
 		final JButton button = Components.createButton("Inserisci Vendemmiatrice");
@@ -375,8 +384,8 @@ public class PanelsAdmin extends PanelsEmployee {
 				success = QueriesAdmin.addHarvester(harve);
 				if (success) {
 					Components.infoPane("Inserimento della Vendemmiatrice ha avuto successo", pane);
-					Components.resetTextComponents(Arrays.asList(tbrand,tTemplate));
-					Components.resetNumberJSpinner(Arrays.asList(tPrice,tRate));
+					Components.resetTextComponents(Arrays.asList(tbrand, tTemplate));
+					Components.resetNumberJSpinner(Arrays.asList(tPrice, tRate));
 				}
 			} catch (NullPointerException ex) {
 				Components.errorPane(Components.getFieldNotSet(), pane);
@@ -388,14 +397,14 @@ public class PanelsAdmin extends PanelsEmployee {
 		paneAdd.add(button);
 		return pane;
 	}
-	
+
 	private static void setVisibleRateOrPrice(final boolean cond) {
 		rate.setVisible(cond);
 		tRate.setVisible(cond);
 		price.setVisible(!cond);
 		tPrice.setVisible(!cond);
 	}
-	
+
 	private static JPanel grapesPane() {
 		final JPanel pane = Components.createPaneBorder("Aggiungere Uva");
 
@@ -407,7 +416,7 @@ public class PanelsAdmin extends PanelsEmployee {
 		constraints.gridx = 0;
 		constraints.gridy = 0;
 
-		final JLabel name = Components.createLabel("Nome ");	
+		final JLabel name = Components.createLabel("Nome ");
 		final JTextField tName = Components.createTextField(Components.getMaxChar());
 		Components.addInCenterPanel(pCenter, constraints, name, tName);
 
@@ -424,14 +433,14 @@ public class PanelsAdmin extends PanelsEmployee {
 		final JLabel pricesDam = Components.createLabel("Prezzo al Litro ");
 		final JSpinner tPricesDam = Components.createSpinnerDouble();
 		Components.addInCenterPanel(pCenter, constraints, pricesDam, tPricesDam);
-		
+
 		// Prezzo Bottiglie
 		constraints.gridx = 0;
 		constraints.gridy++;
 		final JLabel pricesBott = Components.createLabel("Prezzo a Bottiglie ");
 		final JSpinner tPricesBott = Components.createSpinnerDouble();
 		Components.addInCenterPanel(pCenter, constraints, pricesBott, tPricesBott);
-		
+
 		pane.add(pCenter, BorderLayout.CENTER);
 
 		// Button aggiungi
@@ -451,13 +460,13 @@ public class PanelsAdmin extends PanelsEmployee {
 					Components.infoPane("Inserimento dell' Uva ha avuto successo", pane);
 					tName.setText(Components.getRESET_FIELD_TEXT());
 					tType.setSelectedIndex(Components.getRESET_FIELD_NUMBER());
-					Components.resetNumberJSpinner(Arrays.asList(tPricesDam,tPricesBott));
+					Components.resetNumberJSpinner(Arrays.asList(tPricesDam, tPricesBott));
 				}
 			} catch (NullPointerException ex) {
 				Components.errorPane(Components.getFieldNotSet(), pane);
 			} catch (JustInsertException e1) {
 				Components.errorPane(e1.getMessage(), pane);
-			} 
+			}
 		});
 		pane.add(paneAdd, BorderLayout.SOUTH);
 		return pane;

@@ -26,5 +26,4 @@ public class SearchWineInfo extends Search {
 		// Table
 		super.setJViewPointTable(new WineTable(w).createTable());
 	}
-
 }

@@ -27,14 +27,14 @@ public class QueriesEmployee {
 	private static PreparedStatement statementUpdateQuantity = null;
 	
 	private static final String insertClient = "Insert into Cliente(Nome, Cognome, Ind_Via, Ind_Civico, Ind_Citta, Telefono) values (?, ?, ?, ?, ?, ?)";
-	private static final String selectClients = "Select ID_Cliente, Nome, Cognome From Cliente";
-	private static final String selectAllWine = "Select FU.ID_Fase, FU.Uva, FU.Tipologia, FU.Prezzo_al_Litro, FU.Prezzo_a_Bottiglia, FU.Data, "
-			+ "V.Quantita_Attuale, V.Botte From Vino V inner join ( Select * From Sfecciatura SF inner join Uva U on (U.Nome_Uva = SF.Uva) ) "
-			+ "as FU on (V.ID_Sfecciatura = FU.ID_Fase) Where V.Quantita_Attuale <> 0";
 	private static final String insertBuy = "Insert into Acquisto (Data, ID_Cliente, Prezzo_Totale, ID_Aziendale) values (?,?,?,?)";
+	private static final String selectClients = "Select ID_Cliente, Nome, Cognome From Cliente";
 	private static final String insertDetailBuy = "Insert into Dettagli_Acquisto (ID_Acquisto, ID_Vino, Numero_Bottiglie,"
 			+ " Prezzo_Totale_Bottiglia, Numero_Litri, Prezzo_Totale_Damigiana) values (?, ?, ?, ?, ?, ?)";
 	private static final String selectIdBuy = "Select ID_Acquisto From Acquisto Where Data = ? And ID_Cliente = ?";
+	private static final String selectAllWine = "Select FU.ID_Fase, FU.Uva, FU.Tipologia, FU.Prezzo_al_Litro, FU.Prezzo_a_Bottiglia, FU.Data, "
+			+ "V.Quantita_Attuale, V.Botte From Vino V inner join ( Select * From Sfecciatura SF inner join Uva U on (U.Nome_Uva = SF.Uva) ) "
+			+ "as FU on (V.ID_Sfecciatura = FU.ID_Fase) Where V.Quantita_Attuale <> 0";
 	private static final String updateQuantityWines = "Update Vino set Quantita_Attuale = ? Where ID_Sfecciatura = ? ";
 	
 	public static boolean insertClient(final Client client) throws JustInsertException {

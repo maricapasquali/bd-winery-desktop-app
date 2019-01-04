@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import com.toedter.calendar.JDateChooser;
@@ -46,7 +47,7 @@ public class PanelsEmployee extends PanelsPartTime {
 	private static JButton addClient;
 	private static JDateChooser tDateBuy;
 	private static JComboBox<Object> tClient;
-	private static JButton close ;
+	private static JButton close;
 	private static JSpinner tNumBottiglie;
 	private static JSpinner tLitriDam;
 	private static JComboBox<Object> tVino;
@@ -77,6 +78,17 @@ public class PanelsEmployee extends PanelsPartTime {
 		panelSales.add(salePane(pers), BorderLayout.NORTH);
 		paneBuying.add(panelSales);
 		return paneBuying;
+	}
+
+	public static JPanel createSearch() {
+		final JPanel contentPane = Components.createPaneBorder();
+		final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		contentPane.add(tabbedPane);
+		tabbedPane.addTab("Informazioni sul Vino", new SearchWineInfo());
+		tabbedPane.addTab("Acquisti cliente", new SearchClientBuying());
+		tabbedPane.addTab("Prodotti per Fase", new SearchProduct());
+		return contentPane;
 	}
 
 	// FUNZIONI PRIVATE
@@ -205,13 +217,14 @@ public class PanelsEmployee extends PanelsPartTime {
 
 	private static void resetClient() {
 		tStreetNumberClient.setValue(Components.getRESET_FIELD_NUMBER());
-		Components.resetTextComponents(Arrays.asList(tNameClient,tLastNameClient,tStreetClient,tStreetCityClient, tPhoneClient));
+		Components.resetTextComponents(
+				Arrays.asList(tNameClient, tLastNameClient, tStreetClient, tStreetCityClient, tPhoneClient));
 		try {
 			client.setID(clients.get(clients.size() - 1).getID() + 1);
 		} catch (NullPointerException e) {
 		}
 	}
-	
+
 	private static JPanel salePane(final PersonCompany pers) {
 		final JPanel pane = Components.createPaneBorder("Dati Preliminari");
 		// Pane Sale
@@ -222,7 +235,7 @@ public class PanelsEmployee extends PanelsPartTime {
 		constraints.gridy = 0;
 		constraints.gridx = 0;
 		final JLabel dateBith = Components.createLabel("Data ");
-		tDateBuy = Components.createDateField();	
+		tDateBuy = Components.createDateField();
 		Components.addInCenterPanel(paneSale, constraints, dateBith, tDateBuy);
 
 		// Cliente
@@ -232,21 +245,22 @@ public class PanelsEmployee extends PanelsPartTime {
 		try {
 			clients = QueriesEmployee.listOfClients();// QUERY TUTTI I CLIENTI INSERITI
 			tClient = Components.createComboBox();
-			Components.addInCenterPanel(paneSale, constraints, idCliente, tClient, clients.stream().map(Client::string));
+			Components.addInCenterPanel(paneSale, constraints, idCliente, tClient,
+					clients.stream().map(Client::string));
 
 			pane.add(paneSale, BorderLayout.CENTER);
-			
+
 			details = detailsSalePane();
 			panelSales.add(details, BorderLayout.CENTER);
 			details.setVisible(false);
-			
+
 			paneClose.add(priceTot, BorderLayout.WEST);
 			panelSales.add(paneClose, BorderLayout.SOUTH);
 			paneClose.setVisible(false);
-		
-			// Butto Inserisci	
+
+			// Butto Inserisci
 			final JPanel paneAdd = Components.createPaneFlow();
-			addBuy = Components.createButton("Inserisci");
+			addBuy = Components.createButton("Avanti");
 			cancelBuy = Components.createButton("Annulla");
 			cancelBuy.setEnabled(false);
 			addBuy.addActionListener(e -> {
@@ -264,8 +278,8 @@ public class PanelsEmployee extends PanelsPartTime {
 						// Pane Details
 						details.setVisible(true);
 						cancelBuy.setEnabled(true);
-						// Prezzo Totale					
-						paneClose.setVisible(true);					
+						// Prezzo Totale
+						paneClose.setVisible(true);
 						((JButton) e.getSource()).setEnabled(false);
 						tDateBuy.setEnabled(false);
 						tClient.setEnabled(false);
@@ -281,9 +295,9 @@ public class PanelsEmployee extends PanelsPartTime {
 					Components.errorPane(Components.getFieldNotSet(), pane);
 				}
 			});
-			
+
 			cancelBuy.addActionListener(e -> resetBuying());
-			
+
 			paneAdd.add(addBuy);
 			paneAdd.add(cancelBuy);
 			pane.add(paneAdd, BorderLayout.SOUTH);
@@ -304,7 +318,7 @@ public class PanelsEmployee extends PanelsPartTime {
 		final JLabel idVino = Components.createLabel("Vino ");
 		tVino = Components.createComboBox();
 		Components.addInCenterPanel(pDet, consDet, idVino, tVino);
-		
+
 		// Num Bottiglie
 		consDet.gridy++;
 		consDet.gridx = 0;
@@ -318,8 +332,7 @@ public class PanelsEmployee extends PanelsPartTime {
 		final JLabel litriDam = Components.createLabel("Litri (Vino Sfuso) ");
 		tLitriDam = Components.createSpinnerDouble();
 		Components.addInCenterPanel(pDet, consDet, litriDam, tLitriDam);
-		
-	
+
 		pane.add(pDet, BorderLayout.CENTER);
 		// Button Add and close acquisto
 		final JPanel addPane = Components.createPaneFlow();
@@ -340,8 +353,7 @@ public class PanelsEmployee extends PanelsPartTime {
 					buy.addInCart(Product.find(wines, tVino.getSelectedItem().toString()),
 							((Number) tNumBottiglie.getValue()).intValue(),
 							((Number) tLitriDam.getValue()).doubleValue());
-					Utility.log("cart = "+ buy.getCart() );
-					
+					Utility.log("cart = " + buy.getCart());
 
 					SwingUtilities.invokeLater(() -> {
 						repaintTableBuy();
@@ -361,11 +373,11 @@ public class PanelsEmployee extends PanelsPartTime {
 				}
 			});
 		});
-		
+
 		cancel.addActionListener(e -> {
 			try {
 				buy.removeToCart(Product.find(wines, tVino.getSelectedItem().toString()));
-				Utility.log("cart = "+ buy.getCart());
+				Utility.log("cart = " + buy.getCart());
 				SwingUtilities.invokeLater(() -> {
 					repaintPrice(buy.getPriceTot());
 					repaintTableBuy();
@@ -376,12 +388,12 @@ public class PanelsEmployee extends PanelsPartTime {
 				Components.errorPane(Components.getFieldNotSet(), pane);
 			}
 		});
-		
+
 		close.addActionListener(e -> {
 			try {
 				QueriesEmployee.insertBuy(buy);
 				QueriesEmployee.updateQuantityWine(buy);
-				resetBuying();			
+				resetBuying();
 				Components.infoPane("Inserimento dell'intero Acquisto è andato a buon fine", pane);
 			} catch (InsertFailedException e1) {
 				Components.errorPane("Acquisto non è stato inserito! ", pane);
@@ -391,7 +403,7 @@ public class PanelsEmployee extends PanelsPartTime {
 	}
 
 	private static void repaintPrice(final double piceTot) {
-		PRICE_TOT = "Prezzo Totale : " + piceTot  + " €";
+		PRICE_TOT = "Prezzo Totale : " + piceTot + " €";
 		priceTot.setText(PRICE_TOT);
 		priceTot.revalidate();
 		priceTot.repaint();
@@ -403,11 +415,11 @@ public class PanelsEmployee extends PanelsPartTime {
 		cartTable.repaint();
 	}
 
-	private static void resetBuying() {	
+	private static void resetBuying() {
 		SwingUtilities.invokeLater(() -> {
 			// Pane Details
-			details.setVisible(false);		
-			paneClose.setVisible(false);		
+			details.setVisible(false);
+			paneClose.setVisible(false);
 			addBuy.setEnabled(true);
 			cancelBuy.setEnabled(false);
 			tDateBuy.setEnabled(true);
@@ -416,7 +428,7 @@ public class PanelsEmployee extends PanelsPartTime {
 			cartTable.getViewport().removeAll();
 			cartTable.revalidate();
 			cartTable.repaint();
-			tClient.setSelectedIndex(Components.getRESET_FIELD_NUMBER());	
+			tClient.setSelectedIndex(Components.getRESET_FIELD_NUMBER());
 			tVino.removeAllItems();
 			tVino.addItem(null);
 			tVino.setSelectedIndex(Components.getRESET_FIELD_NUMBER());

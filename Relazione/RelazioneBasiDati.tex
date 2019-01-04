@@ -4,19 +4,17 @@
 \usepackage[italian]{babel}
 \usepackage{tabto}
 \usepackage{graphicx}
-\title{Gestione di un azienda vinicola}
 
+\title{Gestione di un azienda vinicola}\date{}
 \author{Marica Pasquali - matricola 0000802302}
 
 \begin{document}
+\maketitle  
 
-\maketitle
-
+\newpage
 \tableofcontents
 \newpage
-
 \section{Analisi}
-
 \subsection{Raccolta dei Requisiti}
 Le seguente descrizione riporta in linguaggio naturale i requisiti per la gestione di un'azienda vinicola.\\
 \newline
@@ -102,15 +100,9 @@ I vini sono di due tipologie : bianco e rosso. I vini bianchi sono Sauvignon, Pi
 Ogni vino ha un prezzo al litro in damigiana e a bottiglia .
 Alcuni vini (Sauvignon, Pignoletto, Merlot) hanno un prezzo superiori perché derivati da vitigni meno produttivi.\\\newline
 Per la gestione degli \textbf{acquisti} da parte di un cliente, viene richiesto di registrare la data di vendita, il cliente, la lista dei vini acquistati dal cliente, la modalità di acquisto (in bottiglia e/o in damigiana), e il prezzo complessivo dell'acquisto. Per ogni \textbf{cliente} si vuole memorizzare il nome, il cognome, l'indirizzo e il numero di telefono.}\\
-
-
 \newpage
-
-
 \section{Progettazione Concettuale}
-
 \subsection{Persone coinvolte}
-
 \subsubsection{Schema scheletro}
 Dopo aver esaminato i requisiti per le persone coinvolte, si presenta il seguente schema scheletro:
 \begin{figure}[htbp]
@@ -133,8 +125,6 @@ Dopo aver esaminato i requisiti per le fasi della Produzione del Vino, si presen
 \includegraphics[width=0.7\textwidth]{img/Fasi_Scheletro}
 \end{figure}
 \subsubsection{Raffinamenti proposti}
-
-
 La relazione \textit{Compimento} verrà convertita in entità e rinominata \textbf{Gruppo}, poiché come dai requisiti, è richiesto di memorizzare il gruppo degli operai per ogni fase di produzione.
 L'entità Gruppo sarà identificata dal operaio e della fase di produzione.
 \newline
@@ -143,7 +133,6 @@ L'entità \textbf{Fase Produzione} è una generalizzazione delle quattro fasi di
 \newline
 \newline
 L'entità \textbf{Prodotto} è una generalizzazione delle tipologie di prodotti : \textbf{Raspi, Mosto, Feccia, VNF, Vinaccia} e \textbf{Vino}, per cui tale entità verrà ridefinita in termini di queste sottoclassi.
-
 \newpage 
 \subsubsection{Schema Parziale}
 Dopo l'applicazione dei raffinamenti proposti e l'inserimento degli attribuiti necessari per le varie entità, lo schema E/R parziale per le Fasi della Produzione del Vino risulta essere il seguente:
@@ -226,7 +215,7 @@ Si fornisce in questa fase una tabella che specifica il numero stimato di istanz
 \textit{\textbf{Tabella 3.1.1}  - Tabella dei Volumi.}
 \newpage
 \subsection{Descrizione delle operazioni principali e stima della loro frequenza} 
-In questa fase si propone una tavola/lista delle operazioni utilizzata per costituire una stima delle principali operazioni.\
+In questa fase si propone una tabella delle operazioni utilizzata per costituire una stima delle principali operazioni.\\
 \newline
 \newline
 \begin{tabular}{p{0.05\textwidth} |p{0.5\textwidth}| p{0.2\textwidth}| c}\hline
@@ -243,8 +232,7 @@ In questa fase si propone una tavola/lista delle operazioni utilizzata per costi
     10&Visualizzazione delle informazioni basilari di un vino (data, quantità e botte) di un data uva &5 al giorno & B\\\hline
     11&Visualizzazione delle informazioni basilari (uva, quantita, botte) dei prodotti di una data fase di un dato anno& 2 volte all'anno & B\\\hline
     12&Visualizzazione dei gruppi di ogni fase con componente uno specifico operaio Part-time e il relativo calcolo delle ore complessive di lavoro& 1 volta all'anno&B\\\hline
-    13&Visualizzazione di tutte le fasi di produzione con data di compimento e le quantità dei relativi prodotti di una relativa uva &2 volte all'anno&B\\\hline
-    14&Visualizzazione di tutti gli acquisti di un dato cliente e calcolo della spesa complessiva & 1 volta a settimana&B\\\hline
+    13&Visualizzazione di tutti gli acquisti di un dato cliente e calcolo della spesa complessiva & 1 volta a settimana&B\\\hline
 \end{tabular}
 \newline
 \textit{\textbf{Tabella 3.2.1}  - Tabella delle Operazioni delle Persone.}
@@ -255,7 +243,7 @@ In questa fase si propone una tavola/lista delle operazioni utilizzata per costi
     \textbf{N.} & \textbf{Operazione eseguite dal sistema software} & \textbf{Frequenza}  & \textbf{Tipo} \\\hline
     1&Inserimento Login & 10 all'anno & I \\\hline
     2&Modifica della data di ultimo Login& 5 al giorno & I\\\hline
-    3&Visualiazzazione della password di accesso per una data persona che lavora nell'azienda (Proprietario e Operai) per verificarne la correttezza & 5 al giorno &B \\\hline
+    3&Visualiazzazione dei dati di accesso per una data persona che lavora nell'azienda (Proprietario e Operai) per verificarne la correttezza & 5 al giorno &B \\\hline
 \end{tabular}
 \newline
 \textit{\textbf{Tabella 3.2.1}  - Tabella delle Operazioni del Sistema Software.}
@@ -337,31 +325,8 @@ Totale: 19L \qquad \qquad Frequenza operazione: 1 all'anno
 \newline
 \newline
 \textbf{Totale costo}: 1 * 19 = 19 all'anno\\
-\newpage
-\item Visualizzazione di tutte le fasi di produzione con data di compimento e le quantità dei relativi prodotti di una relativa uva 
-\newline
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=1\textwidth]{img/fasi_prodotti_specifici_accessi.png}
-\end{figure}
-\newline
-\newline
-\begin{tabular}{c|c|c|c}\hline
-    \textbf{Concetto} & \textbf{Costrutto} &  \textbf{Accesso} & \textbf{Tipo} \\\hline
-    Uva & E & 1 & L\\\hline
-    Riferimento & R & 400/10 = 40 & L \\\hline
-    Fase Produzione& E & 400/10 = 40 & L\\\hline
-    Produzione & R & 400/10 = 40 & L \\\hline
-    Prodotto & E & 400/10 = 40  & L\\\hline
-    Contenitore & R & 400/10 = 40 & L \\\hline
-    Botte& E & 400/10 = 40 & L\\\hline
-\end{tabular}
-\newline
-Totale: 241L \qquad \qquad Frequenza operazione: 2 all'anno
-\newline
-\newline
-\textbf{Totale costo}: 2 * 241 = 482 all'anno\\
 \end{itemize}
+\newpage
 \subsection{Analisi delle ridondanze}
 Nello schema E/R riferito alle vendite sono presenti delle ridondanze. 
 Infatti l'attributo Prezzo dell'entità Acquisto è un attributo derivabile, dai due attributi ( Prezzo Totale Damigiana e Prezzo Totale Bottiglia ) della relazione Dettaglio Acquisto.
@@ -391,15 +356,13 @@ Per la gerarchia PERSONA, si decide di adottare come soluzione il collasso verso
 \includegraphics[width=0.95\textwidth]{img/eliminazione_ger_Persona.png}
 \end{figure}\\\newline\newline
 \newpage
-
 Per la gerarchia PRODOTTO e FASE PRODUZIONE, si decide di adottare come soluzione il collasso verso il basso. La scelta è motivata dal fatto che la frequenza delle operazioni eseguite su queste due entità sono relativamente basse e quindi si vuole privilegiare la  eliminazione di eventuali valori nulli e quindi la riduzione di memoria utilizzata, piuttosto che le prestazioni.\\
 Cosi facendo però l'entità GRUPPO si divide per ogni fase, ma è un bene poiché l'entità VENDEMMIATRICE è riferita solo al GRUPPO che effettua la fase RACCOLTA.\newline
 \newline
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=1\textwidth]{img/eliminazione_ger_prodotto_fase.png}
-\end{figure}\\\newline\newline
-\newpage
+\end{figure}\\
 \item \textbf{Eliminazione degli  attributi composti}\\
 \'E possibile individuare nello schema E/R che l’attributo “Indirizzo” delle entità PERSONA è un attributo composto dai sotto-attributi: “Via”, ”Civico”, ”Città”. Esso viene quindi scomposto nelle sue tre sotto-parti per entrambe le entità in questione.\\
 \item \textbf{Scelta delle chiavi primarie}\\
@@ -409,6 +372,7 @@ L'entità seguenti
 \begin{itemize}
 \item  \textit{Vendemmiatrice}
 \item  \textit{Fase Produzione} 
+\item  \textit{Cliente}
 \item  \textit{Acquisto}
 \end{itemize} 
 verrebbero identificate tramite una composizione di attributi. Poiché risulta scomodo utilizzare una chiave primaria composta, soprattutto quando deve essere usata come chiave esterna, si opta per una chiave primaria più semplice, composta dal solo attributo numerico.\\
@@ -417,9 +381,7 @@ L' entità \textit{Login} è identificata dalla chiave dell'entità  \textit{Per
 L' entità \textit{Prodotto}  è identificata dalla chiave dell'entità  \textit{Fase Produzione}.\\
 L' entità \textit{Gruppo} è identificata dalle chiave dell'entità \textit{Operaio} e della entità \textit{Fase Produzione} .\\
 \end{itemize}
-
 \subsection{Traduzione di entità e associazioni in relazioni}
-
 \textbf{PERSONA\_AZIENDA}(\underline{ID},Nome, Cognome, Ind\_Via, Ind\_Civico, Ind\_Citta, Telefono, Data\_di\_Nascita, Tipo\_Login, Stipendio\_Mensile*)\\
 AK: Nome, Cognome\\\newline
 \textbf{ASSUNZIONE}(\underline{ID\_Operaio}, ID\_Proprietario, Data)\\
@@ -444,27 +406,21 @@ AK: Uva, Data \\\newline
 FK: Uva REFERENCES \textbf{UVA}\\
 AK: Uva, Data \\\newline
 \textbf{RASPI }(\underline{ID\_Pigiatura}, Quantita )\\
-FK: ID\_Pigiatura REFERENCES \textbf{PIGIATURA}\\
-AK: Fase, Quantita \\\newline
+FK: ID\_Pigiatura REFERENCES \textbf{PIGIATURA}\\\newline
 \textbf{MOSTO}(\underline{ID\_Pigiatura},  Quantita, Botte)\\
 FK: ID\_Pigiatura REFERENCES \textbf{PIGIATURA}\\
-FK: Botte REFERENCES \textbf{BOTTE}\\
-AK: Fase, Quantita \\\newline
+FK: Botte REFERENCES \textbf{BOTTE}\\\newline
 \textbf{VINACCIA}(\underline{ID\_Svinatura},  Quantita)\\
-FK: ID\_Svinatura REFERENCES \textbf{SVINATURA}\\
-AK: Fase, Quantita \\\newline
+FK: ID\_Svinatura REFERENCES \textbf{SVINATURA}\\\newline
 \textbf{VNF}(\underline{ID\_Svinatura},  Quantita, Botte)\\
 FK: ID\_Svinatura REFERENCES \textbf{SVINATURA}\\
-FK: Botte REFERENCES \textbf{BOTTE}\\
-AK: Fase, Quantita \\\newline
+FK: Botte REFERENCES \textbf{BOTTE}\\\newline
 \textbf{FECCIA}(\underline{ID\_Sfecciatura},  Quantita, Botte)\\
 FK: ID\_Sfecciatura REFERENCES \textbf{SFECCIATURA}\\
-FK: Botte REFERENCES \textbf{BOTTE}\\
-AK: Fase, Quantita \\\newline
+FK: Botte REFERENCES \textbf{BOTTE}\\\newline
 \textbf{VINO}(\underline{ID\_Sfecciatura},  Quantita, Quantita\_Attuale,Botte)\\
 FK: ID\_Sfecciatura REFERENCES \textbf{SFECCIATURA}\\
-FK: Botte REFERENCES \textbf{BOTTE}\\
-AK: Fase, Quantita \\\newline
+FK: Botte REFERENCES \textbf{BOTTE}\\\newline
 \textbf{GRUPPO\_RACCOLTA}(\underline{ID\_Raccolta}, \underline{ID\_Operaio}, Ore\_Lavoro *, ID\_Vendemmiatrice*)\\
 FK: ID\_Raccolta REFERENCES \textbf{RACCOLTA}\\
 FK: ID\_Operaio REFERENCES \textbf{PERSONA\_AZIENDA}\\
@@ -497,6 +453,7 @@ FK: ID\_Vino REFERENCES \textbf{VINO}
 \begin{itemize}
 \item \textbf{Inserimento Operaio}\\\newline
 INSERT INTO Persona\_Azienda(Nome, Cognome, Ind\_Via, Ind\_Civico, Ind\_Citta, Telefono, Data\_di\_Nascita, Tipo\_Login, Stipendio\_Mensile)  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\\\newline
+SELECT ID FROM PERSONA\_AZIENDA WHERE Nome = ? AND Cognome = ?\\\newline
 INSERT INTO Assunzione(ID\_Operaio, Data, ID\_Proprietario)  VALUES (?, ?, ?)\\\newline
 \item \textbf{Inserimento Uva}\\\newline
 INSERT INTO Uva(Nome\_Uva, Tipologia, Prezzo\_al\_Litro, Prezzo\_a\_Damigiana) VALUES (?, ?, ?, ?)\\\newline
@@ -510,31 +467,57 @@ INSERT INTO Botte(ID\_Botte, Capacita, Cantina) VALUES (?, ?, ?)\\\newline
 \item \textbf{Inserimento Cliente}\\\newline
 INSERT INTO Cliente(Nome, Cognome, Ind\_Via, Ind\_Civico, Ind\_Citta, Telefono) VALUES ( ?, ?, ?, ?, ?, ?)\\\newline
 \item \textbf{Inserimento Fase di Produzione}\\\newline
-INSERT INTO Raccolta(ID\_Fase, Data, Uva, Quantita) VALUES(?, ?, ?, ?)\\\newline
-INSERT INTO Pigiatura(ID\_Fase, Data, Uva) VALUES(?, ?, ?)\\\newline
-INSERT INTO Svinatura(ID\_Fase, Data, Uva) VALUES(?, ?, ?)\\\newline
-INSERT INTO Sfecciatura(ID\_Fase, Data, Uva) VALUES(?, ?, ?)\\\newline
+SELECT * FROM UVA\\\newline
+INSERT INTO Raccolta(Data, Uva, Quantita) VALUES(?, ?, ?, ?)\\\newline
+INSERT INTO Pigiatura(Data, Uva) VALUES(?, ?, ?)\\\newline
+INSERT INTO Svinatura(Data, Uva) VALUES(?, ?, ?)\\\newline
+INSERT INTO Sfecciatura(Data, Uva) VALUES(?, ?, ?)\\\newline
 \newpage
 \item \textbf{Inserimento Prodotto}\\\newline
+SELECT ID\_Fase, Data, Uva, Quantita FROM PIGIATURA P LEFT JOIN RASPI R on (P.ID\_Fase = R.ID\_Pigiatura)\\\newline
 INSERT INTO Raspi(ID\_Pigiatura, Quantita) VALUES(?, ?, ?)\\\newline
+SELECT ID\_Fase, Data, Uva, Quantita FROM PIGIATURA P LEFT JOIN MOSTO M on (P.ID\_Fase = M.ID\_Pigiatura)\\\newline
 INSERT INTO Mosto(ID\_Pigiatura, Quantita, Botte) VALUES(?, ?, ?, ?)\\\newline
+SELECT ID\_Fase, Data, Uva, Quantita FROM SVINATURA SV LEFT JOIN VINACCIA V on (SV.ID\_Fase = V.ID\_Svinatura)\\\newline
 INSERT INTO Vinaccia(ID\_Svinatura, Quantita) VALUES(?, ?, ?, ?)\\\newline
+SELECT ID\_Fase, Data, Uva, Quantita FROM SVINATURA SV LEFT JOIN VNF on (SV.ID\_Fase = VNF.ID\_Svinatura)\\\newline
 INSERT INTO VNF(ID\_Svinatura, Quantita, Botte) VALUES(?, ?, ?, ?)\\\newline
+SELECT ID\_Fase, Data, Uva, Quantita FROM SFECCIATURA SF LEFT JOIN FECCIA F on (SF.ID\_Fase = F.ID\_Sfecciatura)\\\newline
 INSERT INTO Feccia(ID\_Sfecciatura, Quantita, Botte) VALUES(?, ?, ?, ?)\\\newline
+SELECT ID\_Fase, Data, Uva, Quantita FROM SFECCIATURA SF LEFT JOIN VINO V on (SF.ID\_Fase = V.ID\_Sfecciatura)\\\newline
 INSERT INTO Vino(ID\_Sfecciatura, Quantita, Quantita\_Attuale, Botte) VALUES(?, ?, ?, ?)\\\newline
+Per chi necessiata delle botti:\\
+SELECT ID\_Botte, Capacita FROM BOTTE WHERE ID\_Botte NOT IN (\\
+SELECT Botte FROM MOSTO UNION \\
+SELECT Botte FROM VNF UNION\\
+SELECT DISTINCT Botte FROM FECCIA UNION\\
+SELECT Botte FROM VINO )\\\newline
+Per il prodotto Feccia:\\
+SELECT TB.Tipologia, TB.Botte, B.Capacita FROM BOTTE B JOIN \\
+(SELECT TS.Tipologia, F.Botte FROM FECCIA F JOIN \\
+(SELECT SF.ID\_Fase, U.Tipologia FROM UVA U JOIN SFECCIATURA SF on (U.Nome\_Uva = SF.Uva)) AS TS ON (F.ID\_Sfecciatura = TS.ID\_Fase)) \\
+AS TB ON (TB.Botte = B.ID\_Botte)\\\newline
 \item \textbf{Inserimento Gruppo}\\\newline
+SELECT ID, Nome, Cognome, Tipo\_Login FROM PERSONA\_AZIENDA WHERE Tipo\_Login $<$$>$ 'Admin'\\\newline
+SELECT ID\_Vend, Marca, Modello FROM VENDEMMIATRICE\\\newline
+SELECT ID\_Fase, Data, Uva, ID\_Operaio FROM RACCOLTA R LEFT JOIN GRUPPO\_RACCOLTA GR ON ( R.ID\_Fase = GR.ID\_Raccolta) WHERE GR.ID\_Operaio IS NULL\\\newline
 Utilizzata la vendemmiatrice:\\
 INSERT INTO Gruppo\_Raccolta(ID\_Raccolta, ID\_Operaio, Ore\_Lavoro, ID\_Vendemmiatrice) VALUES(?, ?, ?, ?)\\\newline
 Non utilizzata vendemmiatrice:\\
 INSERT INTO Gruppo\_Raccolta(ID\_Raccolta, ID\_Operaio, Ore\_Lavoro) VALUES(?, ?, ?)\\\newline
 \newline
+SELECT ID\_Fase, Data, Uva, ID\_Operaio FROM PIGIATURA P LEFT JOIN GRUPPO\_PIGIATURA GP ON ( P.ID\_Fase = GP.ID\_Pigiatura) WHERE GP.ID\_Operaio IS NULL\\\newline
 INSERT INTO Gruppo\_Pigiatura(ID\_Pigiatura, ID\_Operaio, Ore\_Lavoro) VALUES(?, ?, ?)\\\newline
+SELECT ID\_Fase, Data, Uva, ID\_Operaio FROM SVINATURA SV LEFT JOIN GRUPPO\_SVINATURA GSV ON ( SV.ID\_Fase = GSV .ID\_Svinatura) WHERE GSV.ID\_Operaio IS NULL\\\newline
 INSERT INTO Gruppo\_Svinatura(ID\_Svinatura, ID\_Operaio, Ore\_Lavoro) VALUES(?, ?, ?)\\\newline
+SELECT ID\_Fase, Data, Uva, ID\_Operaio FROM SFECCIATURA SF LEFT JOIN GRUPPO\_SFECCIATURA GSF ON ( SF.ID\_Fase = GSF.ID\_Sfecciatura) WHERE GSF.ID\_Operaio IS NULL\\\newline
 INSERT INTO Gruppo\_Sfecciatura(ID\_Sfecciatura, ID\_Operaio, Ore\_Lavoro) VALUES(?, ?, ?)\\\newline
-\newpage
 \item \textbf{Registrazione Acquisto}\\\newline
+SELECT ID\_Cliente, Nome, Cognome FROM CLIENTE\\\newline
 INSERT INTO Acquisto(Data, ID\_Cliente, ID\_Aziendale, Prezzo\_Totale) VALUES(?, ?, ?, ?)\\\newline
+SELECT ID\_Acquisto FROM ACQUISTO WHERE Data = ? AND ID\_Cliente = ?\\\newline
 INSERT INTO Dettagli\_Acquisto (ID\_Acquisto,  ID\_Vino, Numero\_Bottiglie, Prezzo\_Totale\_Bottiglie, Numero\_Litri,  Prezzo\_Totale\_Damigiana) VALUES(?, ?, ?, ?, ?, ?)\\\newline
+UPDATE VINO SET Quantita\_Attuale = ? WHERE ID\_Sfecciatura = ? \\\newline
 Informazioni globali sul vino richiesto dal cliente\\
 SELECT FU.Uva, FU.Tipologia, FU.Prezzo\_al\_Litro, FU.Prezzo\_a\_Bottiglia, FU.Data, V.Quantita, V.Botte\\
 FROM VINO V JOIN (\\
@@ -544,56 +527,33 @@ WHERE SF.Uva = ?
 AND SF.Data = ?\\
 ) AS FU ON (V.ID\_Svinatura = FU.ID\_Fase) \\
 WHERE V.Quantita\_Attuale $<$$>$ 0\\\newline
+\newpage
 \item \textbf{Visualizzazione delle informazioni basilari di un vino (data, quantità e botte) di un data uva}\\\newline
 SELECT S.Data, V.Quantita,  V.Quantita\_Attuale, V.Botte FROM VINO V JOIN SFECCIATURA S ON (V.ID\_Sfecciatura = S.ID\_Fase) WHERE S.Uva=?\\\newline
 \item \textbf{Visualizzazione delle informazioni basilari (uva, quantita, botte) dei prodotti di una data fase di un dato anno}\\\newline
-SELECT R.Uva, R.Quantita FROM RACCOLTA R WHERE R.Data=?\\\newline
-SELECT P.Uva, R.Quantita FROM PIGIATURA P JOIN RASPI R ON (R.ID\_Pigiatura = P.ID\_Fase) WHERE P.Data=?\\\newline
-SELECT P.Uva, M.Quantita, M.Botte FROM PIGIATURA P JOIN MOSTO M ON (M.ID\_Pigiatura = P.ID\_Fase) WHERE P.Data=?\\\newline
-SELECT SV.Uva, VC.Quantita, VC.Botte FROM SVINATURA SV JOIN VINACCIA VC ON (VC.ID\_Svinatura = SV.ID\_Fase) WHERE SV.Data=?\\\newline
-SELECT SV.Uva, VN.Quantita, VN.Botte FROM SVINATURA SV JOIN VINO VN ON (VN.ID\_Svinatura = SV.ID\_Fase) WHERE SV.Data=?\\\newline
-SELECT SF.Uva, F.Quantita, F.Botte FROM SFECCIATURA SF JOIN FECCIA F ON (F.ID\_Sfecciatura = SF.ID\_Fase) WHERE SF.Data=?\\\newline
-SELECT SF.Uva, VNF.Quantita, VNF.Botte FROM SFECCIATURA SF JOIN VNF ON (VNF.ID\_Sfecciatura = SF.ID\_Fase) WHERE SF.Data=?\\\newline
+SELECT ID\_Fase, Uva, Quantita FROM RACCOLTA  WHERE Data=?\\\newline
+SELECT P.ID\_Fase, P.Uva, R.Quantita FROM PIGIATURA P JOIN RASPI R ON (R.ID\_Pigiatura = P.ID\_Fase) WHERE P.Data=?\\\newline
+SELECT P.ID\_Fase, P.Uva, M.Quantita, M.Botte FROM PIGIATURA P JOIN MOSTO M ON (M.ID\_Pigiatura = P.ID\_Fase) WHERE P.Data=?\\\newline
+SELECT SV.ID\_Fase, SV.Uva, VC.Quantita, VC.Botte FROM SVINATURA SV JOIN VINACCIA VC ON (VC.ID\_Svinatura = SV.ID\_Fase) WHERE SV.Data=?\\\newline
+SELECT SV.ID\_Fase, SV.Uva, VN.Quantita, VN.Botte FROM SVINATURA SV JOIN VINO VN ON (VN.ID\_Svinatura = SV.ID\_Fase) WHERE SV.Data=?\\\newline
+SELECT SF.ID\_Fase, SF.Uva, F.Quantita, F.Botte FROM SFECCIATURA SF JOIN FECCIA F ON (F.ID\_Sfecciatura = SF.ID\_Fase) WHERE SF.Data=?\\\newline
+SELECT SF.ID\_Fase, SF.Uva, VNF.Quantita, VNF.Botte FROM SFECCIATURA SF JOIN VNF ON (VNF.ID\_Sfecciatura = SF.ID\_Fase) WHERE SF.Data=?\\\newline
 \item \textbf{Visualizzazione dei gruppi di ogni fase con componente uno specifico operaio Part-time e il relativo calcolo delle ore complessive di lavoro }\\\newline
+SELECT ID, Nome, Cognome FROM PERSONA\_AZIENDA WHERE Tipo\_Login = 'Part-time'\\\newline
 SELECT R.Data, GR.Ore\_Lavoro, GR.ID\_Vendemmiatrice FROM GRUPPO\_RACCOLTA GR , RACCOLTA R WHERE GR.ID\_Operaio = ?\\\newline
 SELECT P.Data, GP.Ore\_Lavoro FROM GRUPPO\_PIGIATURA GP , PIGIATURA P WHERE GP.ID\_Operaio = ?\\\newline
 SELECT SV.Data, GSV.Ore\_Lavoro FROM GRUPPO\_SVINATURA GSV , SVINATURA SV WHERE GSV.ID\_Operaio = ?\\\newline
 SELECT SF.Data, GSF.Ore\_Lavoro FROM GRUPPO\_SFECCIATURA GSF , SFECCIATURA SF WHERE GSF.ID\_Operaio = ?\\\newline
-
-\item \textbf{Visualizzazione di tutte le fasi di produzione con data di compimento e le quantità dei relativi prodotti di una relativa uva}\\\newline
-SELECT R.Data, R.Quantita FROM RACCOLTA R  WHERE R.Uva = ?  \\\newline
-SELECT P.Data, PR.Raspi\_Quantita, PR.Mosto\_Quantita, PR.Botte\_Mosto\\
-FROM PIGIATURA P JOIN (\\
-SELECT RA.ID\_Pigiatura, RA.Quantita AS Raspi\_Quantita, M.Quantita AS Mosto\_Quantita, M.Botte AS Botte\_Mosto\\
-FROM MOSTO M JOIN RASPI RA ON (M.ID\_Pigiatura = RA.ID\_Pigiatura)\\
-) AS PR  ON (P.ID\_Fase = PR.ID\_Pigiatura)\\
-WHERE P.Uva = ?\\\newline
-SELECT SF.Data,  PR.Feccia\_Quantita,  PR.Botte\_Feccia, PR.VNF\_Quantita, PR.Botte\_VNF\\
-FROM SFECCIATURA SF JOIN (\\
-SELECT F.ID\_Sfecciatura, F.Quantita AS Feccia\_Quantita,  F.Botte AS Botte\_Feccia, VNF.Quantita AS VNF\_Quantita, VNF.Botte AS Botte\_VNF\\
-FROM FECCIA F JOIN VNF ON (F.ID\_Sfecciatura = VNF.ID\_Sfecciatura)\\
-) AS PR  ON (SF.ID\_Fase = PR.ID\_Sfecciatura)\\
-WHERE SF.Uva = ?\\\newline
-SELECT SV.Data,  PR.Vinaccia\_Quantita,  PR.Botte\_Vinaccia, PR.Vino\_Quantita, PR.Botte\_Vino\\
-FROM SVINATURA SV JOIN (\\
-SELECT VC.ID\_Svinatura, VC.Quantita AS Vinaccia\_Quantita,  VC.Botte AS Botte\_Vinaccia, VI.Quantita AS Vino\_Quantita, VI.Botte AS Botte\_Vino\\
-FROM VINACCIA VC JOIN VINO VI ON (VC.ID\_Svinatura = VI.ID\_Svinatura)\\
-) AS PR  ON (SV.ID\_Fase = PR.ID\_Svinatura)\\
-WHERE SV.Uva = ?\\\newline
-
 \item \textbf{Visualizzazione di tutti gli acquisti di un dato cliente  e calcolo della spesa complessiva }\\\newline
-CREATE VIEW ACQUISTI\_CLIENTE AS (Data, Prezzo\_Totale,  ID\_Aziendale) 
-AS SELECT A.Data, A.Prezzo\_Totale, A.ID\_Aziendale FROM ACQUISTO A WHERE A.ID\_Cliente = ( SELECT ID\_Cliente FROM CLIENTE C WHERE C.Nome = ? AND C.Cognome= ?  ) \\\newline
-SELECT SUM(AC.Prezzo\_Totale) FROM ACQUISTI\_CLIENTE AC \\\newline
+SELECT Data, Prezzo\_Totale, ID\_Aziendale FROM ACQUISTO WHERE ID\_Cliente = ? \\\newline
 \item \textbf{Inserimento Login}\\\newline
+SELECT * FROM PERSONA\_AZIENDA WHERE Nome=? AND Cognome=? \\\newline
 INSERT INTO Login(ID\_Aziendale, Password) VALUES(?, ?)\\\newline
 \item \textbf{Modifica della data di ultimo Login}\\\newline
 UPDATE LOGIN SET Ultimo\_Accesso = ? WHERE ID\_Aziendale = ? \\\newline
-\item \textbf{Visualiazzazione della password di accesso per una data persona che lavora nell'azienda (Proprietario e Operai) per verificarne la correttezza }\\\newline
-SELCET L.Password FROM LOGIN L WHERE L.ID\_Aziendale = ( SELECT ID FROM PERSONA\_AZIENDA PA WHERE PA.Nome = ? AND PA.Cognome= ?)\\\newline
-
+\item \textbf{Visualiazzazione dei dati di accesso per una data persona che lavora nell'azienda (Proprietario e Operai) per verificarne la correttezza }\\\newline
+SELECT * FROM LOGIN L WHERE L.ID\_Aziendale = ?\\\newline
 \end{itemize}
-
 \newpage
 \section{Progettazione dell'applicazione}
 \subsection{Descrizione dell'architettura dell'applicazione realizzata}

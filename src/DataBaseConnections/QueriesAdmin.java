@@ -19,7 +19,7 @@ public class QueriesAdmin {
 
 	private static final String insertWorker = "Insert into Persona_Azienda (Nome,Cognome, Ind_Via, Ind_Civico, Ind_Citta, Telefono, "
 			+ "Data_di_Nascita, Tipo_Login, Stipendio_Mensile) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String selectIdWorker = "Select P.ID From Persona_Azienda P Where P.Nome = ? And P.Cognome = ?";
+	private static final String selectIdWorker = "Select ID From Persona_Azienda Where Nome = ? And Cognome = ?";
 	private static final String insertAssumption = "Insert into Assunzione (ID_Operaio, Data, ID_Proprietario) "
 			+ "values(? , ?, ?)";
 	private static final String insertGrape = "Insert into Uva(Nome_Uva, Tipologia, Prezzo_al_Litro, Prezzo_a_Bottiglia) values (?, ?, ?, ?)";

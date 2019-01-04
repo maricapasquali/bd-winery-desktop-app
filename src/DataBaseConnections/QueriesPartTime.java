@@ -34,17 +34,16 @@ public class QueriesPartTime {
 	private static final String insertPhaseProduction = "Insert into ";
 	private static final String selectGrapes = "Select * From Uva";
 	private static String insertProduct = "Insert into ";
-	private static final String selectAllWorkers = "Select ID, Nome, Cognome, Tipo_Login From Persona_Azienda Where Tipo_Login <> 'Admin'";
-	private static final String selectAllHarvesters = "Select ID_Vend, Marca, Modello From Vendemmiatrice";
-	private static String insertGroup = "Insert into Gruppo_";
 	private static final String selectCasks = "Select ID_Botte, Capacita From Botte Where ID_Botte Not In ( "
 			+ "Select Botte From Mosto Union Select Botte From VNF Union "
 			+ "Select distinct Botte From Feccia Union Select Botte From Vino )";
-	
 	private static final String selectCaskForFeccia = "Select TB.Tipologia, TB.Botte, B.Capacita From Botte B inner join "
 			+ "(Select TS.Tipologia, F.Botte From Feccia as F inner join "
 			+ "(Select SF.ID_Fase, U.Tipologia From Uva as U inner join Sfecciatura as SF on (U.Nome_Uva = SF.Uva)) "
-			+ "as TS on (F.ID_Sfecciatura = TS.ID_Fase)) as TB on (TB.Botte = B.ID_Botte);";
+			+ "as TS on (F.ID_Sfecciatura = TS.ID_Fase)) as TB on (TB.Botte = B.ID_Botte)";
+	private static String insertGroup = "Insert into Gruppo_";
+	private static final String selectAllWorkers = "Select ID, Nome, Cognome, Tipo_Login From Persona_Azienda Where Tipo_Login <> 'Admin'";
+	private static final String selectAllHarvesters = "Select ID_Vend, Marca, Modello From Vendemmiatrice";
 
 	public static boolean insertPhaseProduction(final PhaseProduction pp) {
 		boolean success = true;
@@ -171,6 +170,32 @@ public class QueriesPartTime {
 		return success;
 	}
 
+	private static void productQuery(final TypeProduct p) {
+		insertProduct += p ;
+		switch (p) {
+		case RASPI:
+			insertProduct += " (ID_Pigiatura, Quantita) values (?,?)";
+			break;
+		case MOSTO:
+			insertProduct += " (ID_Pigiatura, Quantita, Botte) values (?, ?, ?)";
+			break;
+		case VINACCIA:
+			insertProduct += " (ID_Svinatura, Quantita) values (?, ?)";
+			break;
+		case VNF:
+			insertProduct += " (ID_Svinatura, Quantita, Botte) values (?, ?, ?)";
+			break;	
+		case FECCIA:
+			insertProduct += " (ID_Sfecciatura, Quantita, Botte) values (?, ?, ?)";
+			break;
+		case VINO:
+			insertProduct += " (ID_Sfecciatura, Quantita, Quantita_Attuale , Botte) values (?, ?, ?, ?)";
+			break;
+		default:
+			break;
+		}
+	}
+	
 	public static List<PhaseProduction> selectPhase(final PhaseProduction pp, final String product) throws NotPhaseException, JustInsertException {
 
 		final Connection connection = ConnectionDB.getUcanaccessConnection();
@@ -183,7 +208,7 @@ public class QueriesPartTime {
 			final String ppw = pp.getPpw().toString() ;
 			statement = connection.createStatement();
 				
-			final ResultSet result = statement.executeQuery("SELECT ID_Fase, Data, Uva, Quantita From " + ppw +  " left join " +  product 
+			final ResultSet result = statement.executeQuery("Select ID_Fase, Data, Uva, Quantita From " + ppw +  " left join " +  product 
 					+ " on (" + ppw+".ID_Fase = "+ product+".ID_"+ppw + ")");
 			
 			if (result != null) {
@@ -225,52 +250,6 @@ public class QueriesPartTime {
 		return toSet;
 	}
 	
-	public static List<PhaseProduction> selectPhaseGroup(final String ppw) throws JustInsertException {
-
-		final Connection connection = ConnectionDB.getUcanaccessConnection();
-		Utility.log("Exexute Connection ...");
-		Statement statement = null;
-		List<PhaseProduction> phases = null;
-		PhaseProduction phase = null;		
-		try {
-			final String group = "Gruppo_" + ppw;
-			statement = connection.createStatement();
-						
-			final ResultSet result = statement.executeQuery("SELECT ID_Fase, Data, Uva, ID_Operaio From " + ppw +  " left join " + group 
-					+ " on (" + ppw+".ID_Fase = "+ group +".ID_"+ppw + ") Where " + group + ".ID_Operaio is null");
-			Utility.log("Exexute Query ... ");
-			if (result != null) {
-				phases = new ArrayList<>();
-			}
-			while (result.next()) {
-				phase = new PhaseProductionBuilderImpl().setId(result.getLong("ID_Fase")).setPpw(PhaseProductionWine.conversion(ppw))
-						.setDate(result.getDate("Data")).setGrape(new GrapeBuilderImpl().setName(result.getString("Uva")).build())
-						.build();
-				phases.add(phase);
-			
-			}
-			
-			if(phases.size()==0) {
-				throw new JustInsertException("Gruppo");
-			}		
-			Utility.log(phases);
-		} catch (SQLException  e) {
-			new Exception(e.getMessage());
-			Utility.logError("Errore: " + e.getMessage());
-		} finally {
-			try {
-				if (statement != null)
-					statement.close();
-				if (connection != null)
-					connection.close();
-			} catch (SQLException e) {
-				new Exception(e.getMessage());
-				Utility.logError("Errore: " + e.getMessage());
-			}
-		}
-		return phases;
-	}
-
 	public static List<Cask> selectAvailableCasks() {
 		final Connection connection = ConnectionDB.getUcanaccessConnection();
 		Utility.log("Exexute Connection ...");
@@ -345,6 +324,123 @@ public class QueriesPartTime {
 		return caskForFeccia;
 	}
 
+	private static void resetStringProcuct() {
+		insertProduct = "Insert into ";
+	}
+	
+	public static boolean insertGroup(final Group group) throws NullPointerException {
+		boolean success = true;
+		final Connection connection = ConnectionDB.getUcanaccessConnection();
+		Utility.log("Exexute Connection ...");
+		PreparedStatement statement = null;
+		try {
+			if(group==null) {
+				throw new NullPointerException();
+			}
+			groupQuery(group);
+			statement = connection.prepareStatement(insertGroup);
+
+			for (int i = 0; i < group.getWorkerAndHoursWork().size(); i++) {
+				statement.setLong(1, new ArrayList<>(group.getWorkerAndHoursWork().keySet()).get(i).getID());
+				statement.setLong(2, group.getPhaseProduction().getId());
+				final Optional<Integer> hours = new ArrayList<>(group.getWorkerAndHoursWork().values()).get(i);
+				if (hours.isPresent()) {
+					statement.setInt(3, hours.get());
+				} else {
+					statement.setNull(3, Types.NULL);
+				}
+				if (group.getPhaseProduction().isCollection()) {
+					if (group.getIdHarvester().isPresent()) {
+						statement.setLong(4, group.getIdHarvester().get());
+					} else {
+						statement.setNull(4, Types.NULL);
+					}
+				}
+				statement.executeUpdate();
+				Utility.log("Exexute Query ... ");
+			}
+
+		} catch (SQLException e) {
+			new Exception(e.getMessage());
+			Utility.logError("Errore: " + e.getMessage());
+			success = false;
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+				if (connection != null)
+					connection.close();
+
+				resetStringGroup();
+			} catch (SQLException e) {
+				new Exception(e.getMessage());
+				Utility.logError("Errore: " + e.getMessage());
+				success = false;
+			}
+		}
+
+		return success;
+	}
+
+	private static void groupQuery(final Group g) {
+		final String phase = g.getPhaseProduction().getPpw().toString();
+		insertGroup += (phase + " (ID_Operaio, ID_" + phase + ", Ore_Lavoro");
+		switch (g.getPhaseProduction().getPpw()) {
+		case RACCOLTA:
+			insertGroup += (", ID_Vend) values(?,?,?,?)");
+			break;
+		default:
+			insertGroup += (") values(?,?,?)");
+			break;
+		}
+	}
+
+	public static List<PhaseProduction> selectPhaseGroup(final String ppw) throws JustInsertException {
+
+		final Connection connection = ConnectionDB.getUcanaccessConnection();
+		Utility.log("Exexute Connection ...");
+		Statement statement = null;
+		List<PhaseProduction> phases = null;
+		PhaseProduction phase = null;		
+		try {
+			final String group = "Gruppo_" + ppw;
+			statement = connection.createStatement();
+						
+			final ResultSet result = statement.executeQuery("Select ID_Fase, Data, Uva, ID_Operaio From " + ppw +  " left join " + group 
+					+ " on (" + ppw+".ID_Fase = "+ group +".ID_"+ppw + ") Where " + group + ".ID_Operaio is null");
+			Utility.log("Exexute Query ... ");
+			if (result != null) {
+				phases = new ArrayList<>();
+			}
+			while (result.next()) {
+				phase = new PhaseProductionBuilderImpl().setId(result.getLong("ID_Fase")).setPpw(PhaseProductionWine.conversion(ppw))
+						.setDate(result.getDate("Data")).setGrape(new GrapeBuilderImpl().setName(result.getString("Uva")).build())
+						.build();
+				phases.add(phase);
+			
+			}
+			
+			if(phases.size()==0) {
+				throw new JustInsertException("Gruppo");
+			}		
+			Utility.log(phases);
+		} catch (SQLException  e) {
+			new Exception(e.getMessage());
+			Utility.logError("Errore: " + e.getMessage());
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				new Exception(e.getMessage());
+				Utility.logError("Errore: " + e.getMessage());
+			}
+		}
+		return phases;
+	}
+	
 	public static List<PersonCompany> selectAllWorker() {
 		final Connection connection = ConnectionDB.getUcanaccessConnection();
 		Utility.log("Exexute Connection ...");
@@ -417,105 +513,9 @@ public class QueriesPartTime {
 		}
 		return harvesters;
 	}
-
-	public static boolean insertGroup(final Group group) throws NullPointerException {
-		boolean success = true;
-		final Connection connection = ConnectionDB.getUcanaccessConnection();
-		Utility.log("Exexute Connection ...");
-		PreparedStatement statement = null;
-		try {
-			if(group==null) {
-				throw new NullPointerException();
-			}
-			groupQuery(group);
-			statement = connection.prepareStatement(insertGroup);
-
-			for (int i = 0; i < group.getWorkerAndHoursWork().size(); i++) {
-				statement.setLong(1, new ArrayList<>(group.getWorkerAndHoursWork().keySet()).get(i).getID());
-				statement.setLong(2, group.getPhaseProduction().getId());
-				final Optional<Integer> hours = new ArrayList<>(group.getWorkerAndHoursWork().values()).get(i);
-				if (hours.isPresent()) {
-					statement.setInt(3, hours.get());
-				} else {
-					statement.setNull(3, Types.NULL);
-				}
-				if (group.getPhaseProduction().isCollection()) {
-					if (group.getIdHarvester().isPresent()) {
-						statement.setLong(4, group.getIdHarvester().get());
-					} else {
-						statement.setNull(4, Types.NULL);
-					}
-				}
-				statement.executeUpdate();
-				Utility.log("Exexute Query ... ");
-			}
-
-		} catch (SQLException e) {
-			new Exception(e.getMessage());
-			Utility.logError("Errore: " + e.getMessage());
-			success = false;
-		} finally {
-			try {
-				if (statement != null)
-					statement.close();
-				if (connection != null)
-					connection.close();
-
-				resetStringGroup();
-			} catch (SQLException e) {
-				new Exception(e.getMessage());
-				Utility.logError("Errore: " + e.getMessage());
-				success = false;
-			}
-		}
-
-		return success;
-	}
-
-	private static void productQuery(final TypeProduct p) {
-		insertProduct += p ;
-		switch (p) {
-		case RASPI:
-			insertProduct += " (ID_Pigiatura, Quantita) values (?,?)";
-			break;
-		case MOSTO:
-			insertProduct += " (ID_Pigiatura, Quantita, Botte) values (?, ?, ?)";
-			break;
-		case VINACCIA:
-			insertProduct += " (ID_Svinatura, Quantita) values (?, ?)";
-			break;
-		case VNF:
-			insertProduct += " (ID_Svinatura, Quantita, Botte) values (?, ?, ?)";
-			break;	
-		case FECCIA:
-			insertProduct += " (ID_Sfecciatura, Quantita, Botte) values (?, ?, ?)";
-			break;
-		case VINO:
-			insertProduct += " (ID_Sfecciatura, Quantita, Quantita_Attuale , Botte) values (?, ?, ?, ?)";
-			break;
-		default:
-			break;
-		}
-	}
 	
-	private static void groupQuery(final Group g) {
-		final String phase = g.getPhaseProduction().getPpw().toString();
-		insertGroup += (phase + " (ID_Operaio, ID_" + phase + ", Ore_Lavoro");
-		switch (g.getPhaseProduction().getPpw()) {
-		case RACCOLTA:
-			insertGroup += (", ID_Vend) values(?,?,?,?)");
-			break;
-		default:
-			insertGroup += (") values(?,?,?)");
-			break;
-		}
-	}
-
 	private static void resetStringGroup() {
 		insertGroup = "Insert into Gruppo_";
 	}
 
-	private static void resetStringProcuct() {
-		insertProduct = "Insert into ";
-	}
 }

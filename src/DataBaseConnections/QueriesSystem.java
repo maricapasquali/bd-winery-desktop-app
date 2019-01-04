@@ -17,9 +17,10 @@ import exception.NotInSystemException;
 public class QueriesSystem {
 
 	private static String inTheSystem = "Select * From Persona_Azienda Where Nome=? And Cognome=? ";
-	private static String loggedIn = "Select * From Login Where ID_Aziendale = ?";
 	private static String insertLogin = "Insert into Login (ID_Aziendale, Password ) values(?, ?)";
+	private static String loggedIn = "Select * From Login Where ID_Aziendale = ?";
 	private static String updateDateLogin = "Update Login set Ultimo_Accesso = ? Where ID_Aziendale = ?";
+	
 	private static String selectDateAssumption = "Select Data From Assunzione Where ID_Operaio=?";
 	private static String selectAllHoursWorker = "Select Sum(OP.Ore_Lavoro) as Ore_Totali_Lavoro From ("
 			+ "SELECT Sum(GR.Ore_Lavoro) as Ore_Lavoro FROM Persona_Azienda AS PA inner join Gruppo_Raccolta "

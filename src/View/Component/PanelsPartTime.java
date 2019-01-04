@@ -116,12 +116,10 @@ public class PanelsPartTime {
 		tabbedPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		contentPane.add(tabbedPane);
 		tabbedPane.addTab("Informazioni sul Vino", new SearchWineInfo());
-		tabbedPane.addTab("Acquisti cliente", new SearchClientBuying());
-		tabbedPane.addTab("Part-Time Ore", new SearchWorkerHours());
 		tabbedPane.addTab("Prodotti per Fase", new SearchProduct());
 		return contentPane;
 	}
-	
+
 	// FUNZIONI PRIVATE
 	private static void setSlipPane() {
 
@@ -339,7 +337,7 @@ public class PanelsPartTime {
 										.build(),
 								tProduct.getSelectedItem().toString());
 				Utility.log(listPhase);
-				
+
 				if (listPhase != null) {
 
 					if (!listPhase.isEmpty()) {
@@ -474,8 +472,7 @@ public class PanelsPartTime {
 				Utility.log(p);
 				success = QueriesPartTime.insertProduct(p);
 				if (success) {
-					Components.infoPane("Inserimento " + p.getName() + " è andata a buon fine",
-							pCenter);
+					Components.infoPane("Inserimento " + p.getName() + " è andata a buon fine", pCenter);
 					resetProduct();
 				}
 			} catch (NumberFormatException ex) {
@@ -542,7 +539,7 @@ public class PanelsPartTime {
 		listCask.forEach(c -> tCask.addItem(c));
 		tCask.setSelectedIndex(Components.getRESET_FIELD_NUMBER());
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private static JPanel researchPhaseForGroup() {
 		final JPanel pane = Components.createPaneBorder();
@@ -576,20 +573,21 @@ public class PanelsPartTime {
 			});
 		});
 		pane.add(pCenter, BorderLayout.CENTER);
-		
+
 		// Button Aggiungi
 		final JPanel paneAhead = Components.createPaneFlow();
 		aheadGroup = Components.createButton("Avanti");
 		paneAhead.add(aheadGroup);
-		
-		aheadGroup.addActionListener(e->{		
+
+		aheadGroup.addActionListener(e -> {
 			try {
 				listPhaseGroup = QueriesPartTime.selectPhaseGroup(tPhaseGroup.getSelectedItem().toString());
 				SwingUtilities.invokeLater(() -> {
 					paneAddGroup.setVisible(true);
-					((JButton)(e.getSource())).setVisible(false);
+					((JButton) (e.getSource())).setVisible(false);
 					tPhaseGroup.setEnabled(false);
-					listPhaseGroup.stream().map(PhaseProduction::getDate).forEach(d -> tDateChooseToInsertGroup.addItem(d.toString()));	
+					listPhaseGroup.stream().map(PhaseProduction::getDate)
+							.forEach(d -> tDateChooseToInsertGroup.addItem(d.toString()));
 				});
 				Utility.log(listPhaseGroup);
 			} catch (NullPointerException e3) {
@@ -614,7 +612,7 @@ public class PanelsPartTime {
 		final JLabel dateChooseToInsertGroup = Components.createLabel("Data ");
 		tDateChooseToInsertGroup = Components.createComboBox();
 		Components.addInCenterPanel(pCenter, constraints, dateChooseToInsertGroup, tDateChooseToInsertGroup);
-	
+
 		// Operaio
 		constraints.gridx = 0;
 		constraints.gridy++;
@@ -675,33 +673,36 @@ public class PanelsPartTime {
 		final JPanel paneAdd = Components.createPaneFlow();
 
 		addWorker = Components.createButton("Aggiungi");
-		
+
 		addWorker.addActionListener(e -> {
-			
+
 			try {
-				if(setOneWorker) {
+				if (setOneWorker) {
 					throw new UsedHarvesterException();
 				}
 				if (!group.isSetIdPhase()) {
-					phase = listPhaseGroup.stream().filter(p -> p.getPpw().toString().equals(tPhaseGroup.getSelectedItem().toString()) && 
-							tDateChooseToInsertGroup.getSelectedItem().toString().equals(p.getDate().toString())).findFirst().get();
-					
-					group.setPhaseProduction(phase);	
+					phase = listPhaseGroup.stream()
+							.filter(p -> p.getPpw().toString().equals(tPhaseGroup.getSelectedItem().toString())
+									&& tDateChooseToInsertGroup.getSelectedItem().toString()
+											.equals(p.getDate().toString()))
+							.findFirst().get();
+
+					group.setPhaseProduction(phase);
 					group.setIdHarvester(Harvester.find(harve, tHarvester.getSelectedItem()));
-					if(!group.getIdHarvester().isPresent()) {
+					if (!group.getIdHarvester().isPresent()) {
 						Components.setVisibleComponents(Arrays.asList(harvester, tHarvester), false);
-					}else {
-						setOneWorker  = true;
+					} else {
+						setOneWorker = true;
 					}
 				}
-				
+
 				try {
 					group.addWorkerAndHoursWork(PersonCompany.find(workers, tWorker.getSelectedItem().toString()),
 							((Number) tHours.getValue()).intValue());
 					Group.String();
 					SwingUtilities.invokeLater(() -> {
 						tWorker.setSelectedIndex(Components.getRESET_FIELD_NUMBER());
-						tHours.setValue(Components.getRESET_FIELD_NUMBER());					
+						tHours.setValue(Components.getRESET_FIELD_NUMBER());
 						Components.setVisibleComponents(Arrays.asList(hours, tHours), false);
 						tHarvester.setSelectedIndex(Components.getRESET_FIELD_NUMBER());
 						tableGroup.getViewport().add(new GroupsTable(group).createTable());
@@ -710,7 +711,7 @@ public class PanelsPartTime {
 					});
 				} catch (JustInsertException e1) {
 					Components.errorPane(e1.getMessage(), pane);
-				} 
+				}
 			} catch (NullPointerException e3) {
 				Components.errorPane(Components.getFieldNotSet(), pane);
 			} catch (UsedHarvesterException e1) {
@@ -721,7 +722,7 @@ public class PanelsPartTime {
 		reset = Components.createButton("Reset");
 		reset.addActionListener(e -> resetGroup(pCenter));
 		paneAdd.add(reset);
-		
+
 		close = Components.createButton("Chiudi");
 		close.addActionListener(e -> {
 			try {
@@ -733,7 +734,7 @@ public class PanelsPartTime {
 		});
 		paneAdd.add(close);
 		pane.add(paneAdd, BorderLayout.SOUTH);
-		
+
 		return pane;
 	}
 
@@ -754,13 +755,13 @@ public class PanelsPartTime {
 		constraints.gridy++;
 		paneAddGroup = addGroups();
 		paneAddGroup.setVisible(false);
-		pCenter.add(paneAddGroup, constraints);	
+		pCenter.add(paneAddGroup, constraints);
 		pane.add(pCenter, BorderLayout.CENTER);
-	
+
 		pane.add(tableGroup, BorderLayout.EAST);
 
 		return pane;
-	}	
+	}
 
 	private static void resetGroup(final JPanel pCenter) {
 		group.reset();

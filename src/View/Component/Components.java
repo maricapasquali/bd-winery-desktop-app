@@ -35,7 +35,6 @@ import Utility.Utility;
 
 public class Components {
 
-
 	private static final String FIELD_NOT_SET = "Alcuni campi non sono stati inseriti";
 	private static String RESET_FIELD_TEXT = "";
 	private static int RESET_FIELD_NUMBER = 0;
@@ -47,22 +46,22 @@ public class Components {
 	private final static int GAPBETWEENBUTTON = 20;
 	private final static int GAPRIGHT = 20;
 
-    public static Image createImage(final String path) {
-        return new ImageIcon(Components.class.getResource(path)).getImage();
-    }
-	
+	public static Image createImage(final String path) {
+		return new ImageIcon(Components.class.getResource(path)).getImage();
+	}
+
 	public static JLabel createLabel() {
 		final JLabel label = new JLabel();
 		label.setFont(createFontButton());
 		return label;
 	}
-	
+
 	public static JLabel createLabel(final String text) {
 		final JLabel label = createLabel();
 		label.setText(text);
 		return label;
 	}
-	
+
 	public static JButton createButton(final String text) {
 		final JButton button = new JButton(text);
 		button.setFont(createFontButton());
@@ -71,11 +70,11 @@ public class Components {
 	}
 
 	public static JDateChooser createDateField() {
-		final JDateChooser dateField = new JDateChooser();	
+		final JDateChooser dateField = new JDateChooser();
 		dateField.setFont(createFontTextField());
 		return dateField;
 	}
-	
+
 	public static JSpinner createSpinner() {
 		final SpinnerModel value = new SpinnerNumberModel(0, // initial value
 				0, // minimum value
@@ -85,6 +84,7 @@ public class Components {
 		tSpinner.setFont(createFontTextField());
 		return tSpinner;
 	}
+
 	public static JSpinner createSpinnerDouble() {
 		final SpinnerModel value = new SpinnerNumberModel(0.0, // initial value
 				0.0, // minimum value
@@ -94,7 +94,7 @@ public class Components {
 		tSpinner.setFont(createFontTextField());
 		return tSpinner;
 	}
-	
+
 	public static JCheckBox createCheckBox(final String text) {
 		final JCheckBox checkBox = new JCheckBox(text);
 		checkBox.setFont(createFontTextField());
@@ -151,7 +151,7 @@ public class Components {
 			public void keyTyped(KeyEvent ke) {
 				String s = ((JTextField) ke.getSource()).getText();
 				if (s.length() > minChar) {
-					((JTextField) ke.getSource()).setText(s.substring(0, minChar-1));
+					((JTextField) ke.getSource()).setText(s.substring(0, minChar - 1));
 				}
 			}
 		});
@@ -164,7 +164,7 @@ public class Components {
 		return combo;
 
 	}
-	
+
 	public static JComboBox<Object> createComboBox() {
 		final JComboBox<Object> combo = new JComboBox<Object>();
 		combo.setFont(createFontTextField());
@@ -187,30 +187,29 @@ public class Components {
 		pNorth.add(op);
 		return pNorth;
 	}
-		
+
 	public static void errorPane(final String error, final Component comp) {
 		Utility.logError(error);
-		JOptionPane.showMessageDialog(comp,error, "Errore", JOptionPane.ERROR_MESSAGE);
-	}	
-	
+		JOptionPane.showMessageDialog(comp, error, "Errore", JOptionPane.ERROR_MESSAGE);
+	}
+
 	public static void infoPane(final String info, final Component comp) {
 		Utility.log(info);
 		JOptionPane.showMessageDialog(comp, info, "Info", JOptionPane.INFORMATION_MESSAGE);
-	}	
-	
+	}
+
 	public static void setVisibleComponents(final List<JComponent> listComp, final boolean cond) {
 		listComp.stream().forEach(c -> c.setVisible(cond));
 	}
-	
+
 	public static void resetTextComponents(final List<JTextField> listComp) {
 		listComp.stream().forEach(c -> c.setText(RESET_FIELD_TEXT));
 	}
-	
 
 	public static void resetNumberJSpinner(final List<?> listComp) {
 		listComp.stream().forEach(c -> ((JSpinner) c).setValue(RESET_FIELD_NUMBER));
 	}
-	
+
 	public static void addInCenterPanel(final JPanel pCenter, final GridBagConstraints constraints, final JLabel label,
 			final JComboBox<Object> combo, final Stream<?> stream) {
 		final JLabel name = label;
@@ -249,7 +248,6 @@ public class Components {
 	public static int getMaxCharPhone() {
 		return MAX_CHAR_PHONE;
 	}
-
 
 	// PRIVATE
 	private static TitledBorder createTitleBorder(final String title) {
