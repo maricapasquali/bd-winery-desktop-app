@@ -3,7 +3,7 @@ package View.Personalmenu;
 import javax.swing.JScrollPane;
 
 import Model.PersonCompany;
-import View.Component.PanelsAdmin;
+import View.Panels.PanelsAdmin;
 
 public class MenuAdmin extends PersonalMenu {
 

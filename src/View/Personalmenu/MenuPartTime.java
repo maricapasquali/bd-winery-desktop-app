@@ -3,7 +3,7 @@ package View.Personalmenu;
 import javax.swing.JScrollPane;
 
 import Model.PersonCompany;
-import View.Component.PanelsPartTime;
+import View.Panels.PanelsPartTime;
 
 public class MenuPartTime extends PersonalMenu{
 

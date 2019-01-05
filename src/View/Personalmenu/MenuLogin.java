@@ -107,18 +107,16 @@ public class MenuLogin extends AbstractFrameDefault {
 	}
 
 	private void verificationUserName() {
-		Utility.log("Verifico USERNAME \n");
+		Utility.log("Verifico USERNAME");
 		SwingUtilities.invokeLater(() -> {
 			try {
 				final String[] nameLastName = USER.getText().split(Pattern.quote(Utility.getSplitUserName()));
 				// Ricerca nel DB della persona
 				this.p = QueriesSystem.IsInSystem(nameLastName[0], nameLastName[1]);
 
-				Utility.log("Esiste nel sistema : " + p);
 				// Ricerca nel DB se ha mai effettuato un accesso (login)
 				login = QueriesSystem.isLoddedIn(p.getID());
-
-				Utility.log(login);
+				
 				p.setLastAccess(login.getLastlogin());
 				accessWithYourAccount();
 
@@ -133,7 +131,7 @@ public class MenuLogin extends AbstractFrameDefault {
 	}
 
 	private void verificationPassword() {
-		Utility.log("Verifico PASSWORD \n");
+		Utility.log("Verifico PASSWORD");
 		if (login != null) {
 			// Se ha effettuato un login, immetto password e verifico che sia corretta
 			final String passw = EnDeCrypt.dencrypt(login.getPassword());
@@ -183,11 +181,12 @@ public class MenuLogin extends AbstractFrameDefault {
 		default:
 			break;
 		}
+		
 		SwingUtilities.invokeLater(() -> {
-			reset();
 			menu.display();
 			this.dispose();
 		});
+		Utility.log("Loggato");
 	}
 
 	private void registrationAccount(final String title) {
@@ -208,6 +207,7 @@ public class MenuLogin extends AbstractFrameDefault {
 		super.rebuildGui();
 	}
 
+	@SuppressWarnings("unused")
 	private void reset() {
 		southPanel.remove(SUBMIT);
 		USER.setEnabled(true);
@@ -245,8 +245,7 @@ public class MenuLogin extends AbstractFrameDefault {
 				while (!dataBase.getName().equals("Azienda.accdb")) {
 					Components.errorPane("Selezionare database 'Azienda.accdb' ", f);
 					dataBase = Utility.dbChoosen(f);
-				}
-				
+				}			
 				f.display();
 			} catch (NullPointerException e) {
 				System.exit(0);

@@ -100,7 +100,7 @@ public class QueriesPartTime {
 						.setPriceBottle(result.getDouble("Prezzo_a_Bottiglia")).build();
 				grapes.add(g);
 			}
-
+			Utility.log(grapes);
 		} catch (SQLException e) {
 			new Exception(e.getMessage());
 			Utility.logError("Errore: " + e.getMessage());
@@ -270,6 +270,7 @@ public class QueriesPartTime {
 				cask.setCapacity(result.getDouble("Capacita"));
 				casks.add(cask);
 			}
+			Utility.log(casks);
 		} catch (SQLException e) {
 			new Exception(e.getMessage());
 			Utility.logError("Errore: " + e.getMessage());
@@ -459,6 +460,7 @@ public class QueriesPartTime {
 						.setLastName(result.getString("Cognome")).setType(result.getString("Tipo_Login")).build();
 				workers.add(worker);
 			}
+			Utility.log(workers);
 		} catch (SQLException e) {
 			new Exception(e.getMessage());
 			Utility.logError("Errore: " + e.getMessage());
@@ -494,7 +496,7 @@ public class QueriesPartTime {
 						result.getString("Modello"));
 				harvesters.add(harvester);
 			}
-		
+			Utility.log(harvesters);	
 		} catch (SQLException e) {
 			new Exception(e.getMessage());
 			Utility.logError("Errore: " + e.getMessage());

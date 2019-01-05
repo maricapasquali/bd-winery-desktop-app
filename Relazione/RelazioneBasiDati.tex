@@ -555,13 +555,187 @@ SELECT * FROM LOGIN L WHERE L.ID\_Aziendale = ?\\\newline
 \end{itemize}
 \newpage
 \section{Progettazione dell'applicazione}
+L'applicazione è stata realizzata in linguaggio Java, utilizzando la libreria grafica Swing e UCanAccess per interfacciarsi al database.\\\newline
 \subsection{Descrizione dell'architettura dell'applicazione realizzata}
-
+All’avvio viene proposta la schermata di Login, che può avere più risultati a seconda se la persona:
+\begin{itemize}
+\item  \textit{è registrata nel sistema e ha effettuato almeno un login}, allora può accedere, senza proeblemi, immettendo la corretta password.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{img/rec_system.png}
+\end{figure}\\\newline\newline
+\item   \textit{è nel sistema ma non ha effettuato nessun login}, allora deve registarsi, ovvero deve immettere la password e confermarla, e poi può accedere.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{img/rec_passw.png}
+\end{figure}\\\newline\newline
+\end{itemize}
+\newpage
+Dopo essersi loggati a seconda del ruolo che assume ciascuna persona (proprietario/amministratore, operaio dipendente o operaio part-time), si hanno differenti interfaccie.\\
+\begin{itemize}
+\item  \textit{Admin}.\\
+Una volta effettuato l'accesso, l'applicativo offre all'amministratore le seguenti possibilità:
+\begin{itemize}
+\item  \textit{Assumere operai}.
+\item  \textit{Registrare le varie fasi e i relativi prodotti}.
+\item  \textit{Gestire le vendite e la registrazione dei clienti}.
+\item  \textit{Registare gli strumenti dell'azienda (Uva, Botte, Vendemmiatrice)}.
+\item  \textit{Effettuare ricerche}.
+\end{itemize}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\textwidth]{img/Panelli_Ricerca_Admin.png}
+\end{figure}
+\item  \textit{Operaio Dipendente}.\\
+Una volta effettuato l'accesso, l'applicativo offre al dipendente le seguenti possibilità:
+\begin{itemize}
+\item  \textit{Registrare le varie fasi e i relativi prodotti}.
+\item  \textit{Gestire le vendite e la registrazione dei clienti}.
+\item  \textit{Effettuare ricerche}.
+\end{itemize}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\textwidth]{img/Panelli_Ricerca_Dip.png}
+\end{figure}
+\item  \textit{Operaio Part-Time}.\\
+Una volta effettuato l'accesso, l'applicativo offre al dipendente part-time le seguenti possibilità:
+\begin{itemize}
+\item  \textit{Registrare le varie fasi e i relativi prodotti}.
+\item  \textit{Effettuare ricerche}.
+\end{itemize}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=1\textwidth]{img/Panelli_Ricerca_Part.png}
+\end{figure}
+\end{itemize}
+\newpage
+\subsection{Descrizione dei pannelli dell'applicazione}
+La interfaccia è molto intuitiva, quindi spiegherò brevemente le funzioni dei vari pulsanti.
+\subsubsection{Panello di Assunzione}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{img/panel_assunzioni.png}
+\end{figure}
+Il pulsante "Assumi" inserisce un operaio nel database. Nel caso un o più campi non siano stati compilati, viene segnalato.
+\subsubsection{Panello delle Fasi di Produzioni}
+\begin{itemize}
+\item \textit{Fase}\\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{img/panel_phase.png}
+\end{figure}\\
+Il pulsante "Aggiungi" inserisce nella tabella (del database) corrispondente a una fase di produzione i vari dati (Data e Uva). Nel caso fosse la fase della \textit{Raccolta} verrà richiesto di inserire la quantità di uva raccolta.\\
+\newpage
+\item \textit{Prodotto}\\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{img/panel_product.png}
+\end{figure}\\
+Il pulsante "Avanti" verifica che la tupla corrispondente agli elementi inseriti nella form (Fase e Uva) esistono nel database. Se non esiste viene segnalato, altrimenti se il prodotto non è già stato inserito, vengono aggiunti i campi necessari a completare l'inserimento del prodotto (figura successiva).
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{img/panel_product_quantity.png}
+\end{figure}\\
+Il pulsante "Aggiungi" inserisce nella tabella (del database) corrispondente a un prodotto i vari dati. \\
+Il pulsante "Annulla" resetta i vari campi e impedisce l'inserimento del prodotto nel database. \\
+\newpage
+\item \textit{Gruppo}\\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{img/panel_group_init.png}
+\end{figure}\\
+Il pulsante "Avanti" verifica che la fase selezionata sia inserita, nel qual caso vengono inserite, nella ComboBox, le date della fase in cui non sono stati inseriti gli opeari che l'hanno svolta (figura successiva).
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{img/panel_group.png}
+\end{figure}\\
+Il pulsante "Aggiungi" aggiunge in una lista e nella Table, le informazioni da inseire ne database.\\
+Il pulsante "Reset"  resetta i vari campi e impedisce l'inserimento del gruppo nel database.\\
+Il pulsante "Chiudi" inserisce nel database l'intera lista.\\
+\end{itemize}
+\newpage
+\subsubsection{Panello delle Vendite}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{img/panel_vendite.png}
+\end{figure}
+Il pulsante "Avanti" memorizza la data di acquisto e l'id del cliente e visualizza il pannello per l'inserimento dei vini nel carrello.\\
+Il pulsante "Annulla" annulla l'acquisto e resetta l'interfaccia.\\
+Il pulsante "Aggiungi" memorizza nel carello la quantità di vino selezionato e la inserisce nella Table.\\
+Il pulsante "Cancella" rimuove dal carrello, se presente,  il vino selezionato.\\
+Il pulsante "Chiudi Acquisto" inserisce nel database l'asquisto e i suoi dettagli.\\
+\newline
+Nel caso il cliente non sia stato registrato lo si può inserire attraverso il pulsante "Registra Nuovo Cliente" (figura successiva).\\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{img/panel_client.png}
+\end{figure}\\
+Il pulsante "Inserisci" inserisce nel database il cliente e lo inserisce nella ComboBox del pannello Dati Preliminari dell'aquisto.\\
+Il pulsante "Annulla" resetta l'interfaccia evitando l'inserimento del cliente.\\
+\newpage
+\subsubsection{Panello di Amministrazione}
+I pulsanti "Aggiungi ..." mostano i panelli dei vari elementi da inserire.\\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.7\textwidth]{img/panel_amministrazione_init.png}
+\end{figure}\\
+\begin{itemize}
+\item "Aggiungi Uva " :\\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{img/panel_uva.png}
+\end{figure}
+\newpage
+\item "Aggiungi Botte " :\\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{img/panel_botte.png}
+\end{figure}
+\item "Aggiungi Vendemmiatrice " :\\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{img/panel_vendemmiatrice.png}
+\end{figure}
+\end{itemize}
+I pulsanti "Inserisci" inseriscono nel database le varie informazioni nelle rispettive tabelle (Uva, Botte, Vendemmiatrice).\\
+\newpage
+\subsubsection{Panello di Ricerca}
+I pulsanti "Ricerca"  eseguono la query ad essa assogiata e visualizza il risultato nella Table.\\
+\begin{itemize}
+\item Informazioni su un vino \\
+La query associata è operazione N. 10.\\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{img/panel_info_vino.png}
+\end{figure}
+\item Informazioni sull' acqusito di un cliente\\
+La query associata è operazione N. 13.\\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{img/panel_acquisto_cliente.png}
+\end{figure}\newline
+Il pulsante "Calcola" calcola la somma di tutti i Prezzi Totali.\\
+\newpage
+\item Informazioni su ore di lavoro di un operaio part-time\\
+La query associata è operazione N. 12.\\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{img/panel_part_ore.png}
+\end{figure}\newline
+Il pulsante "Calcola" calcola la somma di tutte le Ore di Lavoro.\\
+\item Informazioni sui prodotti di una fase di un dato anno \\
+La query associata è operazione N. 11.\\
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.8\textwidth]{img/panel_info_prodotti.png}
+\end{figure}
+\end{itemize}
+\newpage
 \section{Glossario}
-\begin{tabular}{lp{0.5\textwidth}}\hline
+
+\begin{tabular}{lp{0.5\textwidth} lp{0.5\textwidth} }\hline
      \textbf{TERMINE} & \textbf{SIGNIFICATO} \\\hline
      \textit{Vendemmiatrice} & Macchina agricola, generalmente con motore proprio, destinata alla raccolta meccanica dell'uva  \\ \hline
      \textit{VNF} & Vino nuovo ancora in fermentazione  
 \end{tabular}
- 
 \end{document}

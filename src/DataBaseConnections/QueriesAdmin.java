@@ -72,7 +72,6 @@ public class QueriesAdmin {
 			statement.setLong(3, idOwner);
 			statement.executeUpdate();
 			Utility.log("Exexute Query ... ");
-
 		} catch (SQLException e) {
 			Utility.logError("Errore: " + e.getMessage());
 			if(e.getErrorCode()==-104) {

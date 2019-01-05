@@ -33,19 +33,14 @@ public class Controller extends Observable  {
 	}
 		
 	public void execQuery(final PersonCompany p) {
-		
+		Utility.log("Caricamento elementi preliminari dal DB");
 		if(!p.isPartTime()) {
-			listClients = QueriesEmployee.listOfClients();
-			Utility.log(listClients);
+			listClients = QueriesEmployee.listOfClients();	
 		}
-		listGrapes = QueriesPartTime.listOfGrapes();
-		Utility.log(listGrapes);
+		listGrapes = QueriesPartTime.listOfGrapes();	
 		listCacks = QueriesPartTime.selectAvailableCasks();	
-		Utility.log(listCacks);
-		listWorkers = QueriesPartTime.selectAllWorker();
-		Utility.log(listWorkers);
+		listWorkers = QueriesPartTime.selectAllWorker();	
 		listHarves = QueriesPartTime.selectAllHarvesters();
-		Utility.log(listHarves);
 	}
 
 	public List<Client> getListClients() {

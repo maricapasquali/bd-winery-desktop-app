@@ -1,16 +1,17 @@
 ##Run
-Just run the .exe file in the current directory. On Linux system you may need to run it via command line `java -jar Gestionale.jar`.
-When the application requires `Azienda.accdb`, provide this file as input.
+Just run the .exe file in the current directory (only Windows System), or you may need to run it via command line `java -jar Gestionale.jar`, for all System.  
+When the application requires `Azienda.accdb`, provide this file as input.  
+The database does not require a password.
 
 ##Login
-Admin
-User Name : marica.pasquali
-Password : ciao1234
+Admin  
+User Name : marica.pasquali  
+Password : ciao1234  
 
-Dipendente
-User Name : mario.rossi
-Password : ciao
+Employee    
+User Name : mario.rossi  
+Password : ciao  
 
-Part-Time 
-User Name : filippo.bianchi
-Password : ciao5678
+Part-Time  
+User Name : filippo.bianchi  
+Password : ciao5678  

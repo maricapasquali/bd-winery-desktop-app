@@ -62,6 +62,7 @@ public class QueriesSystem {
 				}
 				Utility.log("Set values in local ...");
 			}
+		
 			statement.close();
 			if(p==null) {
 				throw new NotInSystemException();
@@ -91,6 +92,7 @@ public class QueriesSystem {
 					}
 				}
 			}
+			Utility.log(p);
 		} catch (SQLException e) {
 			new Exception(e.getMessage());
 			Utility.logError("Errore: " + e.getMessage());
@@ -133,6 +135,7 @@ public class QueriesSystem {
 			if (l == null) {
 				throw new NeverLoggedIn();
 			}
+			Utility.log(l);
 		} catch (SQLException e) {
 			new Exception(e.getMessage());
 			Utility.logError("Errore: " + e.getMessage());
@@ -147,7 +150,7 @@ public class QueriesSystem {
 				Utility.logError("Errore: " + e.getMessage());
 			}
 		}
-
+		
 		return l;
 	}
 
@@ -179,7 +182,6 @@ public class QueriesSystem {
 				Utility.logError("Errore: " + e.getMessage());
 			}
 		}
-
 	}
 
 	public static void updateDateLogin(final Date date, final long id) {
@@ -247,5 +249,4 @@ public class QueriesSystem {
 		}
 		return hoursTot;
 	}
-
 }

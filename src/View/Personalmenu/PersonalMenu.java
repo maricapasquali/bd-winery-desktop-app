@@ -83,6 +83,7 @@ public class PersonalMenu extends AbstractFrameDefault {
 	public void closeAction() {
 		if (JOptionPane.showConfirmDialog(this, EXIT_MESSAGE) == JOptionPane.YES_OPTION) {
 			QueriesSystem.updateDateLogin(Utility.dateNow(), this.getPerson().getID());
+			Utility.log("Aggiornamento data dell'ultimo login\nExit");
 			System.exit(0);
 		}
 	}

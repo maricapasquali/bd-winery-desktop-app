@@ -201,7 +201,7 @@ public class QueriesEmployee {
 						.setLastName(result.getString("Cognome")).build();
 				clients.add(c);
 			}
-
+			Utility.log(clients);
 		} catch (SQLException e) {
 			new Exception(e.getMessage());
 			Utility.logError("Errore: " + e.getMessage());

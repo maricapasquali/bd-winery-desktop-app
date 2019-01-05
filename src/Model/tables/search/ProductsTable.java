@@ -14,18 +14,19 @@ import Model.enumeration.TypeProduct;
 import Model.tables.Table;
 
 public class ProductsTable extends Table {
-	
+
 	private int colum;
-	private Map<Long, Pair<Product,Product>> p;
+	private Map<Long, Pair<Product, Product>> p;
 	private PhaseProductionWine phase;
-	public ProductsTable(final Map<Long, Pair<Product,Product>> prod){
+
+	public ProductsTable(final PhaseProductionWine ph, final Map<Long, Pair<Product, Product>> prod) {
 		super();
 		this.p = prod;
-		phase = new ArrayList<>(p.values()).get(0).left.getPhaseProduction().getPpw();
+		phase = ph;
 	}
 
 	@Override
-	protected AbstractTableModel getModelTable() {	
+	protected AbstractTableModel getModelTable() {
 		switch (phase) {
 		case RACCOLTA:
 			colum = 2;
@@ -45,7 +46,7 @@ public class ProductsTable extends Table {
 			private static final long serialVersionUID = -6690835242520498225L;
 			private static final String KG = " (kg) ";
 			private static final String LT = " (Lt) ";
-			
+
 			@Override
 			public final int getRowCount() {
 				return p.size();
@@ -57,59 +58,61 @@ public class ProductsTable extends Table {
 			}
 
 			@Override
-			public final Object getValueAt(final int rowIndex, final int columnIndex) {			
+			public final Object getValueAt(final int rowIndex, final int columnIndex) {
 				final List<Pair<Product, Product>> lP = new ArrayList<>(p.values());
-				final boolean thereArefirstProd = lP.get(rowIndex).left !=null;
-				final boolean thereAreSecProd = lP.get(rowIndex).right !=null;
+				final boolean thereArefirstProd = lP.get(rowIndex).left != null;
+				final boolean thereAreSecProd = lP.get(rowIndex).right != null;
 				switch (columnIndex) {
 				case 0:
-					return thereArefirstProd ? lP.get(rowIndex).left.getPhaseProduction().getGrape().getName(): thereAreSecProd ?
-							lP.get(rowIndex).right.getPhaseProduction().getGrape().getName(): null;
+					return thereArefirstProd ? lP.get(rowIndex).left.getPhaseProduction().getGrape().getName()
+							: thereAreSecProd ? lP.get(rowIndex).right.getPhaseProduction().getGrape().getName() : null;
 				case 1:
 					return thereArefirstProd ? lP.get(rowIndex).left.getQuantity() : null;
-							
+
 				case 2:
 					switch (phase) {
 					case SFECCIATURA:
-						return thereArefirstProd? lP.get(rowIndex).left.getCask().get() : null;		
+						return thereArefirstProd ? lP.get(rowIndex).left.getCask().get() : null;
 					default:
-						return thereAreSecProd ? lP.get(rowIndex).right.getQuantity(): null;
+						return thereAreSecProd ? lP.get(rowIndex).right.getQuantity() : null;
 					}
 				case 3:
 					switch (phase) {
 					case SFECCIATURA:
-						return thereAreSecProd? lP.get(rowIndex).right.getQuantity():null;
+						return thereAreSecProd ? lP.get(rowIndex).right.getQuantity() : null;
 					default:
-						return thereAreSecProd ?lP.get(rowIndex).right.getCask().get():null ;
+						return thereAreSecProd ? lP.get(rowIndex).right.getCask().get() : null;
 					}
 				case 4:
-					return thereAreSecProd? lP.get(rowIndex).right.getCask().get() : null;
+					return thereAreSecProd ? lP.get(rowIndex).right.getCask().get() : null;
 				}
 				return "";
 			}
 
-		
 			@Override
 			public final String getColumnName(final int column) {
 				switch (column) {
 				case 0:
 					return "Uva";
-				case 1:				
-					if(PhaseProductionWine.withProducts().contains(phase)){
-						switch(phase) {
-						case PIGIATURA: return TypeProduct.RASPI.toString() + KG; 
-						case SVINATURA: return TypeProduct.VINACCIA.toString() + KG ; 
-						case SFECCIATURA: return TypeProduct.FECCIA.toString() +KG;
+				case 1:
+					if (PhaseProductionWine.withProducts().contains(phase)) {
+						switch (phase) {
+						case PIGIATURA:
+							return TypeProduct.RASPI.toString() + KG;
+						case SVINATURA:
+							return TypeProduct.VINACCIA.toString() + KG;
+						case SFECCIATURA:
+							return TypeProduct.FECCIA.toString() + KG;
 						default:
-							break; 
+							break;
 						}
 					} else {
-						return "Quantita"+KG;
+						return "Quantita" + KG;
 					}
 				case 2:
 					switch (phase) {
 					case PIGIATURA:
-						return TypeProduct.MOSTO.toString()+KG;
+						return TypeProduct.MOSTO.toString() + KG;
 					case SVINATURA:
 						return TypeProduct.VNF.toString() + LT;
 					default:
@@ -118,7 +121,7 @@ public class ProductsTable extends Table {
 				case 3:
 					switch (phase) {
 					case SFECCIATURA:
-						return TypeProduct.VINO.toString() +LT;
+						return TypeProduct.VINO.toString() + LT;
 					default:
 						return "Botte";
 					}
@@ -143,12 +146,12 @@ public class ProductsTable extends Table {
 					return Object.class;
 				case 4:
 					return Integer.class;
-	
+
 				default:
 				}
 				return Object.class;
 			}
-			
+
 		};
 	}
 
