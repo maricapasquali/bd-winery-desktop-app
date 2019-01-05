@@ -1,8 +1,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>C:\Users\maric\OneDrive\Basi\Progetto\Basi_WorkSpace\progettobasi\Gestionale.jar</jar>
-  <outfile>C:\Users\maric\OneDrive\Basi\Progetto\Basi_WorkSpace\progettobasi\Gestionale_Azienda_Vinicola.exe</outfile>
+  <jar>C:\Users\maric\Desktop\WorkSpace\progettobasi\Gestionale.jar</jar>
+  <outfile>C:\Users\maric\Desktop\WorkSpace\progettobasi\Gestionale_Azienda_Agricola.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir></chdir>
@@ -12,10 +12,10 @@
   <customProcName>false</customProcName>
   <stayAlive>false</stayAlive>
   <manifest></manifest>
-  <icon>C:\Users\maric\OneDrive\Basi\Progetto\Basi_WorkSpace\progettobasi\ico\grape-icon.ico</icon>
+  <icon>C:\Users\maric\Desktop\WorkSpace\progettobasi\ico\grape-icon.ico</icon>
   <jre>
     <path></path>
-    <minVersion>1.6.0</minVersion>
+    <minVersion>1.7.0</minVersion>
     <maxVersion></maxVersion>
     <jdkPreference>preferJre</jdkPreference>
   </jre>
