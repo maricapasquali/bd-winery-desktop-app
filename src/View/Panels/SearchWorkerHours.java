@@ -17,9 +17,9 @@ import org.apache.commons.lang3.Pair;
 import Controller.Controller;
 import DataBaseConnections.QueriesSearch;
 import Model.PersonCompany;
-import Model.tables.search.HoursPartTimeTable;
 import Utility.Components;
 import Utility.Utility;
+import View.tables.search.HoursPartTimeTable;
 
 public class SearchWorkerHours extends Search implements Observer  {
 

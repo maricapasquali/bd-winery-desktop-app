@@ -112,7 +112,7 @@ public class Buying {
 	public void setPriceTot(final Double priceTot) {
 		this.priceTot = priceTot;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Buying [dateBuying=" + dateBuying + ", idClient=" + idClient + ", idCompany=" + idCompany + ", cart="

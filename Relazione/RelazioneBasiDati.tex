@@ -19,25 +19,22 @@
 Le seguente descrizione riporta in linguaggio naturale i requisiti per la gestione di un'azienda vinicola.\\
 \newline
 \newline
-\textit{Il proprietario dell'azienda assume, in una certa data, i vari dipendenti che svolgeranno il lavoro sul campo. Per ogni proprietario, che ce ne può essere più di uno, si vuole memorizzare nome, cognome, data di nascita, indirizzo, telefono.
+\textit{L'azienda assume, in una certa data, i vari dipendenti che svolgeranno il lavoro sul campo. Per ogni proprietario o socio dell'azienda, si vuole memorizzare nome, cognome, data di nascita, indirizzo, telefono.
 Il proprietario può gestire : le varie operazioni di inserimento, modifica e di ricerca di ogni operazione che compie ogni dipendente e le vendite. Egli può accedere al software con credenziali di amministratore.
 Per ogni dipendente si vuole memorizzare il numero identificativo, il nome, il cognome, la data di nascita, l'indirizzo (via, numero civico e città) e il numero di telefono.
-Nel qual caso fosse un dipendente part – time si vuole memorizzare le ore di lavoro effettuate in un determinato giorno, e le ore totali compiute nel corso della loro assunzione, invece se fosse un dipendente a tempo indeterminato lo stipendio mensile.
+Nel qual caso sia un dipendente part – time si vogliono memorizzare le ore di lavoro effettuate in un determinato giorno e le ore totali compiute nel corso della loro assunzione, invece nel caso di un dipendente a tempo indeterminato è inserito lo stipendio mensile.
 Il dipendente part – time può partecipare a tutte le fasi della produzione del vino, ma non alla vendita.
 Ogni dipendente avrà accesso al software ma con differenti credenziali di accesso ( dipendente a tempo determinato o part-time).\\
 La produzione del vino si divide in quattro fasi: raccolta dell'uva, pigiatura, svinatura e sfecciatura.
-Delle varie fasi si vuole memorizzare il giorno in cui avvengono, e la quantità di prodotto che ogni fase produce. Ogni fase è compiuta da un gruppo di dipendenti. La pigiatura avviene lo stesso giorno della raccolta, o al massimo il giorno dopo.
-L’uva può essere raccolta a mano da un gruppo di dipendenti dell'azienda o con la vendemmiatrice, guidata da un dipendente.
-Per la raccolta con la vendemmiatrice si memorizzi le ore effettuate.
-Per  la vendemmiatrice invece si vuole memorizzare la marca e il modello. Inoltre, nel caso fosse stata acquistata, si richiede di registrare il prezzo; altrimenti se fosse stata presa in affitto, la tariffa oraria.
+Delle varie fasi si vogliono memorizzare il giorno in cui avvengono, e la quantità di prodotti che ogni fase produce. Ogni fase è compiuta da un gruppo di dipendenti. La pigiatura avviene lo stesso giorno della raccolta, o al massimo il giorno dopo.
+L’uva può essere raccolta a mano da un gruppo di dipendenti dell'azienda o con la vendemmiatrice, guidata da un dipendente part-time.
+Per la vendemmiatrice si vuole memorizzare la marca e il modello. Inoltre, nel caso sia di proprietà dell'azienda, si richiede di registrare il prezzo di acquisto, mentre se viene presa a noleggio, si registra la tariffa oraria.
 La fase della pigiatura produce due prodotti: raspi e mosto. Il mosto viene posto in una botte specifica.
 Ogni botte è identificata da un numero e dalla sua capacità ed è posta in una specifica cantina, la quale è identificata da un numero.
 La fase della svinatura produce due prodotti: vinaccia e vino nuovo ancora in fermentazione (VNF). Il VNF viene posto in una botte differente. 
 La fase della sfecciatura produce due prodotti: feccia e vino, che verranno posti in due differenti botti. Le fecce verranno distinte per tipologia (bianco e rosso).\\
-I vini sono di due tipologie : bianco e rosso. I vini bianchi sono Sauvignon, Pignoletto, Trebbiano e Malvasia. I vini sono Merlot, Sangiovese e Barbera.
-Ogni vino ha un prezzo al litro in damigiana e a bottiglia .
-Alcuni vini (Sauvignon, Pignoletto, Merlot) hanno un prezzo superiori perché derivati da vitigni meno produttivi.\\
-Per la gestione degli acquisti da parte di un cliente, viene richiesto di registrare la data di vendita, il cliente, la lista dei vini acquistati dal cliente, la modalità di acquisto (in bottiglia e/o in damigiana), e il prezzo complessivo dell'acquisto. Per ogni cliente si vuole memorizzare il nome, il cognome, l'indirizzo e il numero di telefono.}
+I vini sono di due tipologie : bianco e rosso, derivanti da uve di diverse varietà registrate. Ogni vino ha un prezzo al litro (per la vendita in damigiana) e a bottiglia .\\
+Per la gestione delle vendite è registrato l'operatore addetto ed inoltre la data di vendita, il cliente, la lista dei vini acquistati dal cliente, la modalità di acquisto (in bottiglia e/o in damigiana), e il prezzo complessivo dell'acquisto. Per ogni cliente si vuole memorizzare il nome, il cognome, l'indirizzo e il numero di telefono.}
 
 \newpage
 \subsection{Rilevamento delle ambiguità e ricostruzione dei requisiti}
@@ -56,50 +53,44 @@ A seguito della lettura e comprensione dei requisiti richiesti dal cliente, si p
 \newline
 Ora si sviluppa un testo privo di ambiguità con le correzioni proposte precedentemente.\\
 \newline
-\textit{
-Il proprietario dell'azienda assume, in una certa data, i vari \textbf{operai} che svolgeranno il lavoro sul campo. Per ogni proprietario, che ce ne può essere più di uno, si vuole memorizzare nome, cognome, data di nascita, indirizzo, telefono.
-Il proprietario può gestire : le varie operazioni di inserimento, modifica e di ricerca di ogni operazione che compie ogni \textbf{operaio} e le vendite. Egli può accedere al software con credenziali di amministratore.\\
-Per ogni \textbf{operaio} si vuole memorizzare il numero identificativo, il nome, il cognome, la data di nascita, l'indirizzo (via, numero civico e città), il numero di telefono.
-Nel qual caso fosse un \textbf{operaio} part – time si vuole memorizzare le ore di lavoro effettuate in un determinato giorno, e le ore totali compiute nel corso della loro assunzione, invece se fosse un \textbf{dipendente} lo stipendio mensile.
-L'\textbf{operaio} part – time può partecipare a tutte le fasi della produzione del vino, ma non alla vendita.
+\textit{L'azienda assume, in una certa data, i vari \textbf{operai} che svolgeranno il lavoro sul campo. Per ogni proprietario o socio dell'azienda, si vuole memorizzare nome, cognome, data di nascita, indirizzo, telefono.
+Il proprietario può gestire : le varie operazioni di inserimento, modifica e di ricerca di ogni operazione che compie ogni \textbf{operaio} e le vendite. Egli può accedere al software con credenziali di amministratore.
+Per ogni \textbf{operaio} si vuole memorizzare il numero identificativo, il nome, il cognome, la data di nascita, l'indirizzo (via, numero civico e città) e il numero di telefono.
+Nel qual caso sia un \textbf{operaio} part – time si vogliono memorizzare le ore di lavoro effettuate in un determinato giorno e le ore totali compiute nel corso della loro assunzione, invece nel caso di un \textbf{dipendente} è inserito lo stipendio mensile.
+L' \textbf{operaio} part – time può partecipare a tutte le fasi della produzione del vino, ma non alla vendita. 
 Ogni \textbf{operaio} avrà accesso al software ma con differenti credenziali di accesso ( \textbf{dipendente} o part-time).\\\newline
-La produzione del vino si divide in quattro fasi e per ognuna si vuole memorizzare il giorno in cui avvengono, e la quantità di prodotto che ogni fase produce. Ogni fase è compiuta da un gruppo di \textbf{operai}. La pigiatura avviene lo stesso giorno della raccolta, o al massimo il giorno dopo.
-L’uva può essere raccolta a mano da un gruppo di \textbf{operai} dell'azienda o con la vendemmiatrice, guidata da un \textbf{operaio}.
-Per la raccolta con la vendemmiatrice si memorizzi le ore effettuate.
-Per la vendemmiatrice invece si vuole memorizzare la marca e il modello. Inoltre, nel caso fosse stata acquistata, si richiede di registrare il prezzo; altrimenti se fosse stata presa in affitto, la tariffa oraria.
+La produzione del vino si divide in quattro fasi: raccolta dell'uva, pigiatura, svinatura e sfecciatura.
+Delle varie fasi si vogliono memorizzare il giorno in cui avvengono, e la quantità di prodotti che ogni fase produce. Ogni fase è compiuta da un gruppo di \textbf{operai}. La pigiatura avviene lo stesso giorno della raccolta, o al massimo il giorno dopo.
+L’uva può essere raccolta a mano da un gruppo di \textbf{operai} dell'azienda o con la vendemmiatrice, guidata da un \textbf{operaio} part-time.
+Per la vendemmiatrice si vuole memorizzare la marca e il modello. Inoltre, nel caso sia di proprietà dell'azienda, si richiede di registrare il prezzo di acquisto, mentre se viene presa a noleggio, si registra la tariffa oraria.
 La fase della pigiatura produce due prodotti: raspi e mosto. Il mosto viene posto in una botte specifica.
 Ogni botte è identificata da un numero e dalla sua capacità ed è posta in una specifica cantina, la quale è identificata da un numero.
 La fase della svinatura produce due prodotti: vinaccia e vino nuovo ancora in fermentazione (VNF). Il VNF viene posto in una botte differente. 
 La fase della sfecciatura produce due prodotti: feccia e vino, che verranno posti in due differenti botti. Le fecce verranno distinte per tipologia (bianco e rosso).\\
-I vini sono di due tipologie : bianco e rosso. I vini bianchi sono Sauvignon, Pignoletto, Trebbiano e Malvasia. I vini sono Merlot, Sangiovese e Barbera.
-Ogni vino ha un prezzo al litro in damigiana e a bottiglia .
-Alcuni vini (Sauvignon, Pignoletto, Merlot) hanno un prezzo superiori perché derivati da vitigni meno produttivi.\\\newline
-Per la gestione degli acquisti da parte di un cliente, viene richiesto di registrare la data di vendita, il cliente, la lista dei vini acquistati dal cliente, la modalità di acquisto (in bottiglia e/o in damigiana), e il prezzo complessivo dell'acquisto. Per ogni cliente si vuole memorizzare il nome, il cognome, l'indirizzo e il numero di telefono.}\\
+I vini sono di due tipologie : bianco e rosso, derivanti da uve di diverse varietà registrate. Ogni vino ha un prezzo al litro (per la vendita in damigiana) e a bottiglia .\\\newline
+Per la gestione delle vendite è registrato l'operatore addetto ed inoltre la data di vendita, il cliente, la lista dei vini acquistati dal cliente, la modalità di acquisto (in bottiglia e/o in damigiana), e il prezzo complessivo dell'acquisto. Per ogni cliente si vuole memorizzare il nome, il cognome, l'indirizzo e il numero di telefono.}
 \newpage
-
 \newpage
 \subsection{Estrazione dei concetti principali}
 A seguito della ricostruzione dei requisiti, si procede alla estrazione dei concetti principali che permetterà la costruzione di uno schema concettuale.\\
 \newline
 \newline
-\textit{Il \textbf{proprietario} dell'azienda assume, in una certa data, i vari \textbf{operai} che svolgeranno il lavoro sul campo. Per ogni proprietario, che ce ne può essere più di uno, si vuole memorizzare nome, cognome, data di nascita, indirizzo, telefono.
-Il proprietario può gestire : le varie operazioni di inserimento, modifica e di ricerca di ogni operazione che compie ogni \textbf{operaio} e le vendite. Egli può accedere al software con credenziali di amministratore.\\
-Per ogni \textbf{operaio} si vuole memorizzare il numero identificativo, il nome, il cognome, la data di nascita, l'indirizzo (via, numero civico e città), il numero di telefono.
-Nel qual caso fosse un operaio part – time si vuole memorizzare le ore di lavoro effettuate in un determinato giorno, e le ore totali compiute nel corso della loro assunzione, invece se fosse un dipendente lo stipendio mensile.
-L'operaio part – time può partecipare a tutte le fasi della produzione del vino, ma non alla vendita.
+\textit{L'azienda assume, in una certa data, i vari operai che svolgeranno il lavoro sul campo. Per ogni \textbf{proprietario} o socio dell'azienda, si vuole memorizzare nome, cognome, data di nascita, indirizzo, telefono.
+Il proprietario può gestire : le varie operazioni di inserimento, modifica e di ricerca di ogni operazione che compie ogni operaio e le vendite. Egli può accedere al software con credenziali di amministratore.
+Per ogni \textbf{operaio} si vuole memorizzare il numero identificativo, il nome, il cognome, la data di nascita, l'indirizzo (via, numero civico e città) e il numero di telefono.
+Nel qual caso sia un operaio part – time si vogliono memorizzare le ore di lavoro effettuate in un determinato giorno e le ore totali compiute nel corso della loro assunzione, invece nel caso di un dipendente è inserito lo stipendio mensile.
+L' operaio part – time può partecipare a tutte le fasi della produzione del vino, ma non alla vendita. 
 Ogni operaio avrà accesso al software ma con differenti credenziali di accesso ( dipendente o part-time).\\\newline
-La produzione del vino si divide in quattro \textbf{fasi} e per ognuna si vuole memorizzare il giorno in cui avvengono, e la quantità di \textbf{prodotto} che ogni fase produce. Ogni fase è compiuta da un gruppo di operai. La pigiatura avviene lo stesso giorno della raccolta, o al massimo il giorno dopo.
-L’\textbf{uva} può essere raccolta a mano da un gruppo di operai dell'azienda o con la vendemmiatrice, guidata da un operaio.
-Per la raccolta con la vendemmiatrice si memorizzi le ore effettuate.
-Per la \textbf{vendemmiatrice} invece si vuole memorizzare la marca e il modello. Inoltre, nel caso fosse stata acquistata, si richiede di registrare il prezzo; altrimenti se fosse stata presa in affitto, la tariffa oraria.
+La produzione del vino si divide in quattro \textbf{fasi}: raccolta dell'uva, pigiatura, svinatura e sfecciatura.
+Delle varie fasi si vogliono memorizzare il giorno in cui avvengono, e la quantità di \textbf{prodotti} che ogni fase produce. Ogni fase è compiuta da un gruppo di operai. La pigiatura avviene lo stesso giorno della raccolta, o al massimo il giorno dopo.
+L’\textbf{uva} può essere raccolta a mano da un gruppo di operai dell'azienda o con la vendemmiatrice, guidata da un operaio part-time.
+Per la \textbf{vendemmiatrice} si vuole memorizzare la marca e il modello. Inoltre, nel caso sia di proprietà dell'azienda, si richiede di registrare il prezzo di acquisto, mentre se viene presa a noleggio, si registra la tariffa oraria.
 La fase della pigiatura produce due prodotti: raspi e mosto. Il mosto viene posto in una botte specifica.
 Ogni \textbf{botte} è identificata da un numero e dalla sua capacità ed è posta in una specifica cantina, la quale è identificata da un numero.
 La fase della svinatura produce due prodotti: vinaccia e vino nuovo ancora in fermentazione (VNF). Il VNF viene posto in una botte differente. 
 La fase della sfecciatura produce due prodotti: feccia e vino, che verranno posti in due differenti botti. Le fecce verranno distinte per tipologia (bianco e rosso).\\
-I vini sono di due tipologie : bianco e rosso. I vini bianchi sono Sauvignon, Pignoletto, Trebbiano e Malvasia. I vini sono Merlot, Sangiovese e Barbera.
-Ogni vino ha un prezzo al litro in damigiana e a bottiglia .
-Alcuni vini (Sauvignon, Pignoletto, Merlot) hanno un prezzo superiori perché derivati da vitigni meno produttivi.\\\newline
-Per la gestione degli \textbf{acquisti} da parte di un cliente, viene richiesto di registrare la data di vendita, il cliente, la lista dei vini acquistati dal cliente, la modalità di acquisto (in bottiglia e/o in damigiana), e il prezzo complessivo dell'acquisto. Per ogni \textbf{cliente} si vuole memorizzare il nome, il cognome, l'indirizzo e il numero di telefono.}\\
+I vini sono di due tipologie : bianco e rosso, derivanti da uve di diverse varietà registrate. Ogni vino ha un prezzo al litro (per la vendita in damigiana) e a bottiglia .\\\newline
+Per la gestione delle \textbf{vendite} è registrato l'operatore addetto ed inoltre la data di vendita, il cliente, la lista dei vini acquistati dal cliente, la modalità di acquisto (in bottiglia e/o in damigiana), e il prezzo complessivo dell'acquisto. Per ogni \textbf{cliente} si vuole memorizzare il nome, il cognome, l'indirizzo e il numero di telefono.}
 \newpage
 \section{Progettazione Concettuale}
 \subsection{Persone coinvolte}
@@ -129,10 +120,10 @@ La relazione \textit{Compimento} verrà convertita in entità e rinominata \text
 L'entità Gruppo sarà identificata dal operaio e della fase di produzione.
 \newline
 \newline
-L'entità \textbf{Fase Produzione} è una generalizzazione delle quattro fasi di produzione : \textbf{Raccolta, Pigiatura, Sfecciaura} e \textbf{Svinatura}, per cui tale entità verrà ridefinita in termini di queste sottoclassi.
+L'entità \textbf{Fase Produzione} è una generalizzazione delle quattro fasi di produzione : \textbf{Raccolta, Pigiatura, Svinatura } e \textbf{Sfecciaura }, per cui tale entità verrà ridefinita in termini di queste sottoclassi.
 \newline
 \newline
-L'entità \textbf{Prodotto} è una generalizzazione delle tipologie di prodotti : \textbf{Raspi, Mosto, Feccia, VNF, Vinaccia} e \textbf{Vino}, per cui tale entità verrà ridefinita in termini di queste sottoclassi.
+L'entità \textbf{Prodotto} è una generalizzazione delle tipologie di prodotti : \textbf{Raspi, Mosto, Vinaccia, VNF, Feccia} e \textbf{Vino}, per cui tale entità verrà ridefinita in termini di queste sottoclassi.
 \newpage 
 \subsubsection{Schema Parziale}
 Dopo l'applicazione dei raffinamenti proposti e l'inserimento degli attribuiti necessari per le varie entità, lo schema E/R parziale per le Fasi della Produzione del Vino risulta essere il seguente:
@@ -187,15 +178,15 @@ Si fornisce in questa fase una tabella che specifica il numero stimato di istanz
     Fase Produzione & E & 400\\\hline
     Raccolta & E & 100\\\hline
     Pigiatura & E & 100\\\hline
-    Sfecciatura & E & 100 \\\hline
     Svinatura & E &  100\\\hline
+    Sfecciatura & E & 100 \\\hline
     Uva & E & 10\\\hline
     Prodotto & E & 600\\\hline
     Raspi & E & 100\\\hline
     Mosto& E & 100\\\hline
-    Feccia& E & 100\\\hline
+     Vinaccia& E &100 \\\hline
     VNF& E & 100\\\hline
-    Vinaccia& E &100 \\\hline
+    Feccia& E & 100\\\hline
     Vino & E & 100\\\hline
     Botte & E & 50\\\hline
     Acquisto & E & 300\\\hline
@@ -543,8 +534,18 @@ SELECT R.Data, GR.Ore\_Lavoro, GR.ID\_Vendemmiatrice FROM GRUPPO\_RACCOLTA GR , 
 SELECT P.Data, GP.Ore\_Lavoro FROM GRUPPO\_PIGIATURA GP , PIGIATURA P WHERE GP.ID\_Operaio = ?\\\newline
 SELECT SV.Data, GSV.Ore\_Lavoro FROM GRUPPO\_SVINATURA GSV , SVINATURA SV WHERE GSV.ID\_Operaio = ?\\\newline
 SELECT SF.Data, GSF.Ore\_Lavoro FROM GRUPPO\_SFECCIATURA GSF , SFECCIATURA SF WHERE GSF.ID\_Operaio = ?\\\newline
+\newpage
 \item \textbf{Visualizzazione di tutti gli acquisti di un dato cliente  e calcolo della spesa complessiva }\\\newline
-SELECT Data, Prezzo\_Totale, ID\_Aziendale FROM ACQUISTO WHERE ID\_Cliente = ? \\\newline
+SELECT A.Data, Q.Uva, Q.Numero\_Bottiglie, Q.Numero\_Litri\\
+FROM ACQUISTO A JOIN (\\
+SELECT U.Uva, D.Numero\_Bottiglie, D.Numero\_Litri, D.ID\_Acquisto\\
+FROM DETTAGLI\_ACQUISTO D JOIN (\\
+SELECT S.Uva, S.ID\_Fase\\
+FROM VINO V JOIN SFECCIATURA S ON (V.ID\_Sfecciatura=S.ID\_Fase)\\
+) AS U ON (D.ID\_Vino=U.ID\_Fase)\\
+) AS Q ON (Q.ID\_Acquisto=A.ID\_Acquisto)\\
+WHERE A.ID\_Cliente = ?\\\newline
+SELECT SUM(Prezzo\_Totale) AS Prezzo\_Globale  FROM ACQUISTO WHERE ID\_Cliente = ? \\\newline
 \item \textbf{Inserimento Login}\\\newline
 SELECT * FROM PERSONA\_AZIENDA WHERE Nome=? AND Cognome=? \\\newline
 INSERT INTO Login(ID\_Aziendale, Password) VALUES(?, ?)\\\newline
@@ -571,7 +572,7 @@ All’avvio viene proposta la schermata di Login, che può avere più risultati 
 \end{figure}\\\newline\newline
 \end{itemize}
 \newpage
-Dopo essersi loggati a seconda del ruolo che assume ciascuna persona (proprietario/amministratore, operaio dipendente o operaio part-time), si hanno differenti interfaccie.\\
+Dopo essersi loggati, a seconda del ruolo che riveste ciascuna persona (proprietario/amministratore, operaio dipendente o operaio part-time), si hanno differenti interfaccie.\\
 \begin{itemize}
 \item  \textit{Admin}.\\
 Una volta effettuato l'accesso, l'applicativo offre all'amministratore le seguenti possibilità:
@@ -579,7 +580,7 @@ Una volta effettuato l'accesso, l'applicativo offre all'amministratore le seguen
 \item  \textit{Assumere operai}.
 \item  \textit{Registrare le varie fasi e i relativi prodotti}.
 \item  \textit{Gestire le vendite e la registrazione dei clienti}.
-\item  \textit{Registare gli strumenti dell'azienda (Uva, Botte, Vendemmiatrice)}.
+\item  \textit{Registare gli strumenti dell'azienda (Uva, Botti, Vendemmiatrice)}.
 \item  \textit{Effettuare ricerche}.
 \end{itemize}
 \begin{figure}[htbp]
@@ -611,20 +612,20 @@ Una volta effettuato l'accesso, l'applicativo offre al dipendente part-time le s
 \newpage
 \subsection{Descrizione dei pannelli dell'applicazione}
 La interfaccia è molto intuitiva, quindi spiegherò brevemente le funzioni dei vari pulsanti.
-\subsubsection{Panello di Assunzione}
+\subsubsection{Pannello di Assunzione}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.6\textwidth]{img/panel_assunzioni.png}
 \end{figure}
-Il pulsante "Assumi" inserisce un operaio nel database. Nel caso un o più campi non siano stati compilati, viene segnalato.
-\subsubsection{Panello delle Fasi di Produzioni}
+Il pulsante "Assumi" inserisce un operaio nel database. Nel caso uno o più campi non siano stati compilati viene segnalato.
+\subsubsection{Pannello delle Fasi di Produzioni}
 \begin{itemize}
 \item \textit{Fase}\\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{img/panel_phase.png}
 \end{figure}\\
-Il pulsante "Aggiungi" inserisce nella tabella (del database) corrispondente a una fase di produzione i vari dati (Data e Uva). Nel caso fosse la fase della \textit{Raccolta} verrà richiesto di inserire la quantità di uva raccolta.\\
+Il pulsante "Aggiungi" inserisce nella tabella (del database) corrispondente a una fase di produzione i vari dati (data e varietà di uva). Nella fase della \textit{Raccolta} verrà richiesto di inserire la quantità di uva raccolta.\\
 \newpage
 \item \textit{Prodotto}\\
 \begin{figure}[htbp]
@@ -644,26 +645,26 @@ Il pulsante "Annulla" resetta i vari campi e impedisce l'inserimento del prodott
 \centering
 \includegraphics[width=0.8\textwidth]{img/panel_group_init.png}
 \end{figure}\\
-Il pulsante "Avanti" verifica che la fase selezionata sia inserita, nel qual caso vengono inserite, nella ComboBox, le date della fase in cui non sono stati inseriti gli opeari che l'hanno svolta (figura successiva).
+Il pulsante "Avanti" verifica che la fase selezionata sia inserita. In caso positivo compaiono, nella ComboBox, le date corrispondenti della fase per permettere l'inserimento degli operai (figura successiva).
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{img/panel_group.png}
 \end{figure}\\
-Il pulsante "Aggiungi" aggiunge in una lista e nella Table, le informazioni da inseire ne database.\\
+Il pulsante "Aggiungi" aggiunge in una lista e nella Table, le informazioni da inserire nel database.\\
 Il pulsante "Reset"  resetta i vari campi e impedisce l'inserimento del gruppo nel database.\\
 Il pulsante "Chiudi" inserisce nel database l'intera lista.\\
 \end{itemize}
 \newpage
-\subsubsection{Panello delle Vendite}
+\subsubsection{Pannello delle Vendite}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.8\textwidth]{img/panel_vendite.png}
 \end{figure}
 Il pulsante "Avanti" memorizza la data di acquisto e l'id del cliente e visualizza il pannello per l'inserimento dei vini nel carrello.\\
 Il pulsante "Annulla" annulla l'acquisto e resetta l'interfaccia.\\
-Il pulsante "Aggiungi" memorizza nel carello la quantità di vino selezionato e la inserisce nella Table.\\
+Il pulsante "Aggiungi" memorizza nel carrello la quantità di vino selezionato e la inserisce nella Table.\\
 Il pulsante "Cancella" rimuove dal carrello, se presente,  il vino selezionato.\\
-Il pulsante "Chiudi Acquisto" inserisce nel database l'asquisto e i suoi dettagli.\\
+Il pulsante "Chiudi Acquisto" inserisce nel database l'acquisto e i suoi dettagli.\\
 \newline
 Nel caso il cliente non sia stato registrato lo si può inserire attraverso il pulsante "Registra Nuovo Cliente" (figura successiva).\\
 \begin{figure}[htbp]
@@ -673,14 +674,14 @@ Nel caso il cliente non sia stato registrato lo si può inserire attraverso il p
 Il pulsante "Inserisci" inserisce nel database il cliente e lo inserisce nella ComboBox del pannello Dati Preliminari dell'aquisto.\\
 Il pulsante "Annulla" resetta l'interfaccia evitando l'inserimento del cliente.\\
 \newpage
-\subsubsection{Panello di Amministrazione}
+\subsubsection{Pannello di Amministrazione}
 I pulsanti "Aggiungi ..." mostano i panelli dei vari elementi da inserire.\\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.7\textwidth]{img/panel_amministrazione_init.png}
 \end{figure}\\
 \begin{itemize}
-\item "Aggiungi Uva " :\\
+\item "Aggiungi Uva " (Varietà del Vitigno):\\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.5\textwidth]{img/panel_uva.png}
@@ -714,7 +715,7 @@ La query associata è operazione N. 13.\\
 \centering
 \includegraphics[width=0.8\textwidth]{img/panel_acquisto_cliente.png}
 \end{figure}\newline
-Il pulsante "Calcola" calcola la somma di tutti i Prezzi Totali.\\
+Il pulsante "Calcola" calcola la somma di tutti i vini acquistati da tale cliente.\\
 \newpage
 \item Informazioni su ore di lavoro di un operaio part-time\\
 La query associata è operazione N. 12.\\
@@ -730,12 +731,5 @@ La query associata è operazione N. 11.\\
 \includegraphics[width=0.8\textwidth]{img/panel_info_prodotti.png}
 \end{figure}
 \end{itemize}
-\newpage
-\section{Glossario}
 
-\begin{tabular}{lp{0.5\textwidth} lp{0.5\textwidth} }\hline
-     \textbf{TERMINE} & \textbf{SIGNIFICATO} \\\hline
-     \textit{Vendemmiatrice} & Macchina agricola, generalmente con motore proprio, destinata alla raccolta meccanica dell'uva  \\ \hline
-     \textit{VNF} & Vino nuovo ancora in fermentazione  
-\end{tabular}
 \end{document}

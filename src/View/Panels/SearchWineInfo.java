@@ -11,9 +11,9 @@ import Controller.Controller;
 import DataBaseConnections.QueriesSearch;
 import Model.Grape;
 import Model.Product;
-import Model.tables.search.WineTable;
 import Utility.Components;
 import Utility.Utility;
+import View.tables.search.WineTable;
 
 public class SearchWineInfo extends Search implements Observer {
 

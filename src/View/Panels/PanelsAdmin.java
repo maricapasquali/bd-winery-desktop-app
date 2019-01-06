@@ -140,11 +140,13 @@ public class PanelsAdmin extends PanelsEmployee {
 						Components.setVisibleComponents(Arrays.asList(salary, tSalary), false);
 						break;
 					}
+				
 					pCenter.revalidate();
 					pCenter.repaint();
 				} catch (NullPointerException ex) {
 					Components.setVisibleComponents(Arrays.asList(salary, tSalary), false);
 				}
+				tSalary.setValue(Components.getRESET_FIELD_NUMBER());
 			});
 
 		});

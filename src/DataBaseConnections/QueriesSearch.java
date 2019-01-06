@@ -15,14 +15,13 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.Pair;
 
-import Model.Buying;
 import Model.Product;
-import Model.builder.BuyingBuilderImpl;
 import Model.builder.GrapeBuilderImpl;
 import Model.builder.PhaseProductionBuilderImpl;
 import Model.builder.ProductBuilderImpl;
 import Model.enumeration.PhaseProductionWine;
 import Model.enumeration.TypeProduct;
+import Model.search.BuyingSearch;
 import Utility.Utility;
 
 public class QueriesSearch {
@@ -33,8 +32,16 @@ public class QueriesSearch {
 			+ " on (V.ID_Sfecciatura = S.ID_Fase) Where S.Uva=?";
 	private static String searchProduct;
 	private static String searchHoursPartTime;
-	private static String searchBuyClient = "Select Data, Prezzo_Totale, ID_Aziendale From Acquisto Where ID_Cliente = ?";
-	
+	private static String searchBuyClient = "Select A.Data, Q.Uva, Q.Numero_Bottiglie, Q.Numero_Litri " + 
+			"From Acquisto A inner join ( " + 
+			"Select U.Uva, D.Numero_Bottiglie, D.Numero_Litri, D.ID_Acquisto " + 
+			"From Dettagli_Acquisto D inner join (\n" + 
+			"Select S.Uva, S.ID_Fase " + 
+			"From Vino V inner join Sfecciatura S on (V.ID_Sfecciatura=S.ID_Fase) " + 
+			") as U on (D.ID_Vino=U.ID_Fase) " + 
+			") as Q on (Q.ID_Acquisto=A.ID_Acquisto) " + 
+			"Where A.ID_Cliente =?";//"Select Data, Prezzo_Totale, ID_Aziendale From Acquisto Where ID_Cliente = ?";
+	private static String computePrice = "Select SUM(Prezzo_Totale) as Prezzo_Globale From Acquisto Where ID_Cliente = ?";
 	public static List<Product> searchWineInfo(final String nameGrape) {
 		List<Product> wines = null;
 		Product p = null;
@@ -185,9 +192,9 @@ public class QueriesSearch {
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 	}
 
-	public static List<Buying> searchBuyingClient(final Long idClient) {
-		List<Buying> buy = null;
-		Buying b = null;
+	public static List<BuyingSearch> searchBuyingClient(final Long idClient) {
+		List<BuyingSearch> buy = null;
+		BuyingSearch b = null;
 		final Connection connection = ConnectionDB.getUcanaccessConnection();
 		Utility.log("Exexute Connection ...");
 		PreparedStatement statement = null;
@@ -200,9 +207,11 @@ public class QueriesSearch {
 				buy = new ArrayList<>();
 			}
 			while (result.next()) {
-				b = new BuyingBuilderImpl().setIdClient(idClient).setDateBuying(result.getDate("Data"))
-						.setPriceTot(result.getDouble("Prezzo_Totale")).setIdCompany(result.getLong("ID_Aziendale"))
-						.build();
+				b = new BuyingSearch();
+				b.setDateBuying(result.getDate("Data"));
+				b.setWine(result.getString("Uva"));
+				b.setNum_bottle(result.getInt("Numero_Bottiglie"));  
+				b.setNum_liter(result.getDouble("Numero_Litri"));
 				Utility.log("Insert values ...");
 				buy.add(b);
 			}
@@ -224,4 +233,36 @@ public class QueriesSearch {
 		return buy;
 	}
 
+	public static Double computePriceTotBuying(final Long idClient) {
+		Double priceTot = null;
+		final Connection connection = ConnectionDB.getUcanaccessConnection();
+		Utility.log("Exexute Connection ...");
+		PreparedStatement statement = null;
+		try {
+			statement = connection.prepareStatement(computePrice);
+			statement.setLong(1, idClient);
+			final ResultSet result = statement.executeQuery();
+			Utility.log("Exexute Query ... ");
+			
+			while (result.next()) {	
+				priceTot = result.getDouble("Prezzo_Globale");	
+				Utility.log("Insert values ...");	
+			}
+		} catch (SQLException e) {
+			new Exception(e.getMessage());
+			Utility.logError("Errore: " + e.getMessage());
+		} finally {
+			try {
+				if (statement != null)
+					statement.close();
+				if (connection != null)
+					connection.close();
+			} catch (SQLException e) {
+				new Exception(e.getMessage());
+				Utility.logError("Errore: " + e.getMessage());
+			}
+		}
+		return priceTot;
+	}
+	
 }

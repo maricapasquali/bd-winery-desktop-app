@@ -4,19 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.stream.Collectors;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 import Controller.Controller;
 import DataBaseConnections.QueriesSearch;
-import Model.Buying;
 import Model.Client;
-import Model.tables.search.BuyTable;
+import Model.search.BuyingSearch;
 import Utility.Components;
 import Utility.Utility;
+import View.tables.search.BuyTable;
 
 public class SearchClientBuying extends Search implements Observer {
 
@@ -24,7 +22,7 @@ public class SearchClientBuying extends Search implements Observer {
 	 * 
 	 */
 	private static final long serialVersionUID = 3490299764708216598L;
-	private List<Buying> b = new ArrayList<>();
+	private List<BuyingSearch> b = new ArrayList<>();
 
 	private JButton compute = Components.createButton("Calcola");
 	private JLabel priceLabel = Components.createLabel();
@@ -34,10 +32,10 @@ public class SearchClientBuying extends Search implements Observer {
 				.map(c -> c.getName() + Utility.getSplit() + c.getLastName()));
 		super.addInPaneSouth(compute, priceLabel);
 		super.setJViewPointTable(new BuyTable(b).createTable());
-		
+
 		compute.addActionListener(e -> {
-			priceLabel.setText("Prezzo globale: " + b.stream().map(Buying::getPriceTot)
-					.collect(Collectors.summarizingDouble(Double::doubleValue)).getSum());
+			priceLabel.setText("Prezzo globale: " + QueriesSearch.computePriceTotBuying(
+					Client.find(Controller.getInstance().getListClients(), super.getSelectedCombo())) + " €");
 			priceLabel.setVisible(true);
 			((JButton) (e.getSource())).setEnabled(false);
 		});

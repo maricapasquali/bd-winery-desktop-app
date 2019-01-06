@@ -13,9 +13,9 @@ import org.apache.commons.lang3.Pair;
 import DataBaseConnections.QueriesSearch;
 import Model.Product;
 import Model.enumeration.PhaseProductionWine;
-import Model.tables.search.ProductsTable;
 import Utility.Components;
 import Utility.Utility;
+import View.tables.search.ProductsTable;
 
 public class SearchProduct extends Search {
 
