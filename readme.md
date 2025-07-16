@@ -27,8 +27,8 @@ The final report is located in the folder "_Relazione_": [RelazioneBasiDati.pdf]
 
 # Run
 
-Just run the `WineryDesktopApp-1.0.0.exe` file in the ``build/launch4j`` directory (only Windows System), 
-or you may need to run it via command line `java -jar build/libs/WineryDesktopApp-1.0.0.jar`, for all System.
+Just run the `WineryDesktopApp-1.0.1.exe` file in the ``build/launch4j`` directory (only Windows System), 
+or you may need to run it via command line `java -jar build/libs/WineryDesktopApp-1.0.1.jar`, for all System.
 
 # Database
 

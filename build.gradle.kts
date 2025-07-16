@@ -5,7 +5,7 @@ plugins {
 }
 
 val mainClassPath = "com.winery.desktop.Main"
-val applicationVersion = "1.0.0"
+val applicationVersion = "1.0.1"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
