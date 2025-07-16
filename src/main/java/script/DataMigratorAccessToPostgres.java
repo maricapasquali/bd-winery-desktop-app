@@ -1,6 +1,6 @@
 package script;
 
-import com.winery.DataBaseConnections.ConnectionDB;
+import com.winery.desktop.DataBaseConnections.ConnectionDB;
 
 import java.io.BufferedReader;
 import java.io.IOException;

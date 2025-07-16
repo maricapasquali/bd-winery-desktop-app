@@ -4,7 +4,7 @@ plugins {
     java
 }
 
-val mainClassPath = "com.winery.Main"
+val mainClassPath = "com.winery.desktop.Main"
 val applicationVersion = "1.0.0"
 
 java {
