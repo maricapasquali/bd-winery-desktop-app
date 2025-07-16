@@ -30,8 +30,15 @@ The final report is located in the folder "_Relazione_": [RelazioneBasiDati.pdf]
 Just run the `WineryDesktopApp-1.0.0.exe` file in the ``build/launch4j`` directory (only Windows System), 
 or you may need to run it via command line `java -jar build/libs/WineryDesktopApp-1.0.0.jar`, for all System.
 
-When the application requires `src/main/resources/db/WineryDesktopApp.accdb` (Microsoft Access Database), provide this file as input.
-The database does not require a password.
+# Database
+
+The default database is now PostgreSQL (for details, see [config.properties](./src/main/resources/config.properties)).
+This database requires a username and password.
+
+Create a `.env` file in the root directory with the following properties:
+- `POSTGRES_HOST` (e.g., `POSTGRES_HOST=localhost:5432`)
+- `POSTGRES_USER` (e.g., `POSTGRES_USER=postgres`)
+- `POSTGRES_PASSWORD` (e.g., `POSTGRES_PASSWORD=postgres`)
 
 # Usage
 ## Some credentials

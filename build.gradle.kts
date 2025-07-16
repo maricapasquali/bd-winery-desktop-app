@@ -4,7 +4,7 @@ plugins {
     java
 }
 
-val mainClassPath = "View.Personalmenu.MenuLogin"
+val mainClassPath = "com.winery.Main"
 val applicationVersion = "1.0.0"
 
 java {
@@ -26,23 +26,66 @@ dependencies {
     implementation(files("lib/common-lang3.jar"))
     // jcalendar-1.4.jar
     implementation(files("lib/jcalendar-1.4.jar"))
-
-    // commons-logging-1.1.3.jar
-    implementation("commons-logging:commons-logging:1.1.3")
-    // hsqldb.jar
-    implementation("org.hsqldb:hsqldb:2.7.1") // o una versione compatibile con UCanAccess
-    // jackcess-2.1.11.jar
-    implementation("com.healthmarketscience.jackcess:jackcess:2.1.11")
-    // ucanaccess-4.0.4.jar
-    implementation("net.sf.ucanaccess:ucanaccess:4.0.4")
-    // commons-lang-2.6.jar
-    implementation("commons-lang:commons-lang:2.6")
     // JTattoo-1.6.11.jar
     implementation("com.jtattoo:JTattoo:1.6.11")
     // javax.xml.bind
     implementation("javax.xml.bind:jaxb-api:2.3.1")
+
+    // DATABASE
+    // Microsoft Access: ucanaccess-5.0.1.jar
+    implementation("net.sf.ucanaccess:ucanaccess:5.0.1")
+    // postgresSQL
+    implementation("org.postgresql:postgresql:42.7.7")
 }
 
+fun loadEnv(): Map<String, String> {
+    val envFile = rootProject.file(".env")
+    val env = mutableMapOf<String, String>()
+    if (envFile.exists()) {
+        envFile.forEachLine { line ->
+            if (line.isNotBlank() && !line.trim().startsWith("#")) {
+                val (key, value) = line.split("=", limit = 2)
+                env[key.trim()] = value.trim()
+            }
+        }
+    } else {
+        throw GradleException("No .env file found")
+    }
+    return env
+}
+
+val generateConfig by tasks.registering {
+    val envVars = loadEnv()
+    if (envVars.isEmpty()) throw GradleException("No environment variables specified in .env file")
+
+    val inputFile = sourceSets["main"].resources.files.find { it.name == "config.properties" }?.absoluteFile
+    if (inputFile == null) throw GradleException("config.properties file does not exist.")
+
+    val outputFile = layout.buildDirectory.file("resources/main/config.properties").get().asFile
+
+    outputs.file(outputFile)
+    inputs.file(inputFile)
+    outputs.upToDateWhen { false } // always force the generation
+
+    doLast {
+        var content = inputFile.readText()
+
+        content = Regex("""\$\{([A-Z0-9_]+)}""").replace(content) { match ->
+            val key = match.groupValues[1]
+            envVars[key] ?: throw GradleException("Variable ${key} not found in .env")
+        }
+
+        outputFile.parentFile.mkdirs()
+        outputFile.writeText(content)
+        println("config.properties is generated from .env file.")
+    }
+}
+
+tasks.named<ProcessResources>("processResources") {
+    exclude("config.properties")
+
+    dependsOn(generateConfig)
+}
 
 tasks.jar {
     manifest {
@@ -66,4 +109,10 @@ launch4j {
     headerType = "gui"
     jreMinVersion = "1.8.0"
     version = applicationVersion
+}
+
+tasks.register<JavaExec>("accessToPostgres") {
+    group = "data migration"
+    classpath = sourceSets["main"].runtimeClasspath
+    mainClass.set("script.DataMigratorAccessToPostgres")
 }
